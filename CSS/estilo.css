@@ -1,0 +1,50 @@
+* {list-style: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Arial", "PT Sans", sans-serif;
+}
+p{
+  font-size: 95%;
+}
+hr{
+  background-color: #000;height: 2px;
+}
+.im{
+  width: 120px; height: 40px;
+}
+.imm{
+  width: 200px; height: 200px;
+}
+.perfil{
+  max-width: 100px;
+
+}
+.bg-degrader{
+  background-image: linear-gradient(rgba(75,0,130), rgba(148,0,210,1));
+}
+
+
+/*COMENTARIO AREA*/
+textarea{
+  width: 85%;
+  height:100px;
+  padding: 7px;
+  border: none;
+  font-size: 14px;
+  margin: 9px;
+
+}
+.comenta{
+  box-sizing: border-box;
+  max-height:250px;
+  overflow: scroll;
+}
+.hrd{
+  border-bottom: 1px solid gray;
+  padding: 10px;
+}
+/*footer*/
+.corlink a, .footer-classic a:focus, .footer-classic a:active {
+    color: #ffffff;
+}
