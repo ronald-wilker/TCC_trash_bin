@@ -4,7 +4,10 @@
 //-3 enviar dados colhidos para classe, funcao cadastrar
 //-4 verificar o retorno
 include_once 'classes/usuario.php';
-   $us = new Usuario;
+include_once 'classes/comentario.php';
+$us = new Usuario;
+$comt = new Comentario;
+//$comtario->buscarcomentario();
    session_start();
 
 if (isset($_POST['cadastro']))
@@ -71,7 +74,23 @@ if (isset($_POST['cadastro']))
     header("location:index.php?msge=".$resp);
   }
 }
+//excluir comentario
+if (isset($_GET['id_exc'])) {
+$idcadastro = htmlentities(addslashes($_GET['id_exc']));
 
+  if (isset($_SESSION['id_usuario']))
+   {
+      $comtario->excluircomentario($idcadastro, $_SESSION['id_usuario']);
+      header("location:index.php");
+
+    }elseif (isset($_SESSION['id_master']))
+     {
+      $comtario->excluircomentario($idcadastro, $_SESSION['id_master']);
+      $resp = "Excluido comentário com sucesso!!"
+      header("location:index.php?msg=".$resp);
+
+     }
+}
 
 
 

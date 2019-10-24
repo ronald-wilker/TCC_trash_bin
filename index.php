@@ -1,6 +1,9 @@
 <?php
   include_once 'classes/usuario.php';
+  include_once 'classes/comentario.php';
   $us = new Usuario;
+  $comt = new Comentario;
+  //$comtario->buscarcomentario();
   session_start();
   if (isset($_SESSION['id_usuario']))
    {
@@ -400,58 +403,58 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
 <!--fim meio-->
 <!--area de exibir comentario-->
 <h2 class="text-center">Comentários</h2>
-<section class="comenta ml-5 " style="max-width:90%;">
-  <form class="form-group">
-  <div class="row hrd">
-    <div class="col-4 col-md-2 mt-2">
-      <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-    </div>
-    <div class="col-12 col-md-4 ">
-  <p>
-   <span class="font-weight-bold mr-1">Nome da pessoa</span>
-    <span class="mr-1">hora e data &nbsp &nbsp<a href="#" class="badge badge-danger">Excluir</a> </span>
-  </p>
-    <p class="font-weight-bold">comentario desta pessoa</p>
-    </div>
-  </div>
-  <div class="row hrd">
-    <div class="col-4 col-md-2 mt-2">
-      <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-    </div>
-    <div class="col-12 col-md-4 ">
-  <p>
-   <span class="font-weight-bold mr-1">Nome da pessoa</span>
-    <span class="mr-1">hora e data &nbsp &nbsp<a href="#" class="badge badge-danger">Excluir</a> </span>
-  </p>
-    <p class="font-weight-bold">comentario desta pessoa</p>
-    </div>
-  </div>
-  <div class="row hrd">
-    <div class="col-4 col-md-2 mt-2">
-      <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-    </div>
-    <div class="col-12 col-md-4 ">
-  <p>
-   <span class="font-weight-bold mr-1">Nome da pessoa</span>
-    <span class="mr-1">hora e data &nbsp &nbsp<a href="#" class="badge badge-danger">Excluir</a> </span>
-  </p>
-    <p class="font-weight-bold">comentario desta pessoa</p>
-    </div>
-  </div>
-  <div class="row hrd">
-    <div class="col-4 col-md-2 mt-2">
-      <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-    </div>
-    <div class="col-12 col-md-4 ">
-  <p>
-   <span class="font-weight-bold mr-1">Nome da pessoa</span>
-    <span class="mr-1">hora e data &nbsp &nbsp<a href="#" class="badge badge-danger">Excluir</a> </span>
-  </p>
-    <p class="font-weight-bold">comentario desta pessoa</p>
-    </div>
-  </div>
-</form>
-</section>
+<?php
+  if (count($comtario)> 0) {
+    foreach ($comtario as $v) {
+      ?>
+      <section class="comenta ml-5 " style="max-width:90%;">
+        <form class="form-group">
+        <div class="row hrd">
+          <div class="col-4 col-md-2 mt-2">
+            <img src="imagens/prof.jpg" alt="perfil" class="perfil">
+          </div>
+          <div class="col-12 col-md-4 ">
+        <p>
+         <span class="font-weight-bold mr-1"><?php echo $v['nome']; ?></span>
+          <span class="mr-1">
+            <?php $data = new DateTime($v['datacomentario']);
+                  $data->format('d/m/Y');
+                  echo "-";
+
+                  echo $v['hora'];
+             ?>
+             &nbsp &nbsp
+              <?php
+              if (isset($_SESSION['id_usuario']))
+               { //verificando se o comentario e do usuario da sessao
+                  if ($_SESSION['id_usuario'] == $v['datacomentario'] )
+                   {
+                    ?>
+                    <a href="acao.php?id_exc= <?php echo $v['idcomentario']; ?>" class="badge badge-danger">Excluir</a> </span>
+                    <?php
+                  }
+
+                }elseif (isset($_SESSION['id_master']))
+                 {
+                  ?>
+                  <a href="acao.php?id_exc= <?php echo $v['idcomentario']; ?>" class="badge badge-danger">Excluir</a> </span>
+                  <?php
+                 }
+               ?>
+        </p>
+          <p class="font-weight-bold"><?php $v['comentario']; ?></p>
+          </div>
+        </div>
+
+      </form>
+      </section>
+      <?php
+    }
+  }else {
+    echo "Ainda não há comentarios aqui!!";
+  }
+ ?>
+
 
 <!--inicio footer-->
 <footer class="text-light bg-dark corlink">
