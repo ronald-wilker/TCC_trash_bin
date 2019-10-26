@@ -79,13 +79,13 @@
          <a class="nav-link text-light" href="edita.php" >Dados</a>
       </li>
       <li class="nav-item ">
-         <a class="nav-link text-light" href="sair.php" >Sair</a>
+         <a class="nav-link text-light" href="classes/sair.php" >Sair</a>
       </li>
       <?php
     }elseif (isset($_SESSION['id_usuario']))//se tiver uma sessão mostra botão sair
      { ?>
        <li class="nav-item ">
-          <a class="nav-link text-light" href="sair.php" >Sair</a>
+          <a class="nav-link text-light" href="classes/sair.php" >Sair</a>
        </li>
       <?php
     }else {
@@ -108,8 +108,8 @@
         <form method="post" action="acao.php" >
             <div class="form-group">
               <label for="nomep">Nome Completo <span class="text-danger">*</span></label>
-              <input type="text" class="form-control" id="nomep" name="nomep" aria-describedby="nomecompletoHelp" maxlength="45" placeholder="Seu Nome">
-
+              <input type="text" class="form-control" id="nomep" name="nomep" aria-describedby="nomecompletoHelp" maxlength="45" placeholder="Seu Nome" required>
+                 <small id="emailHelp" class="form-text text-muted">Nome completo ou nick de usuario.</small>
             </div>
             <div class="form-group">
                <label for="selecione">Selecione o Sexo</label>
@@ -119,25 +119,29 @@
                </select>
              </div>
             <div class="form-group">
-              <label for="nescola">Nome da Escola </label>
-              <input type="text" class="form-control" id="nescola" name="nescola" aria-describedby="nescola" maxlength="45" placeholder="Nome da Escola">
+              <label for="nescola">Nome da Escola  <span class="text-danger">*</span> </label>
+              <input type="text" class="form-control" id="nescola" name="nescola" aria-describedby="nescola" maxlength="45" placeholder="Nome da Escola" required>
+                 <small id="emailHelp" class="form-text text-muted">Original ou ficticio.</small>
             </div>
             <div class="form-group">
-              <label for="diciplina">Nome da Disciplina </label>
-              <input type="text" class="form-control" id="diciplina" name="ndiciplina" aria-describedby="diciplina" maxlength="15" placeholder="Nome da Disciplina">
+              <label for="diciplina">Nome da Disciplina  <span class="text-danger">*</span> </label>
+              <input type="text" class="form-control" id="diciplina" name="ndiciplina" aria-describedby="diciplina" maxlength="15" placeholder="Nome da Disciplina" required>
+               <small id="emailHelp" class="form-text text-muted">Original ou ficticio.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Endereço de email <span class="text-danger">*</span></label>
-              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" maxlength="45" placeholder="Seu email">
+              <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" maxlength="45" placeholder="Seu email" required>
               <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Senha <span class="text-danger">*</span></label>
-              <input type="password" class="form-control" id="exampleInputPassword1" name="senha" maxlength="20" placeholder="Senha">
+              <input type="password" class="form-control" id="exampleInputPassword1" name="senha" maxlength="20" placeholder="Senha" required>
+                <small id="emailHelp" class="form-text text-muted">maximo 20  caracteres.</small>
             </div>
             <div class="form-group">
               <label for="exampleInputPassword2">Confirmar Senha <span class="text-danger">*</span></label>
-              <input type="password" class="form-control" id="exampleInputPassword2" name="senha2" maxlength="20" placeholder="Confirmar Senha">
+              <input type="password" class="form-control" id="exampleInputPassword2" name="senha2" maxlength="20" placeholder="Confirmar Senha" required>
+               <small id="emailHelp" class="form-text text-muted">Redigite senha anterior.</small>
             </div>
             <button type="submit" class="btn btn-primary" name="cadastro" value="cadastro">Cadastrar</button>
         </form>
@@ -168,12 +172,13 @@
                 <form method="post" action="acao.php">
                     <div class="form-group">
                       <label for="exampleInputEmail">Endereço de email <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" id="exampleInputEmail" name="email" maxlength="45" aria-describedby="emailHelp" placeholder="Seu email">
+                      <input type="email" class="form-control" id="exampleInputEmail" name="email" maxlength="45" aria-describedby="emailHelp" placeholder="Seu email" required>
                       <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword">Senha <span class="text-danger">*</span></label>
-                      <input type="password" class="form-control" id="exampleInputPassword" maxlength="20" name="senha" placeholder="Senha">
+                      <input type="password" class="form-control" id="exampleInputPassword" maxlength="20" name="senha" placeholder="Senha" required>
+                       <small id="emailHelp" class="form-text text-muted">Digite senha cadastrada.</small>
                     </div>
                     <div class="form-group">
                       <a href="#" class="badge badge-danger">Esqueceu a senha?</a>
@@ -327,8 +332,8 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
     ?>
     <div class="card  col-md-3 col-lg-4 mt-2 bg-primary">
       <h1 class="card-title text-center text-light">Meu Perfil</h1>
-      <div class="d-flex justify-content-center">
-        <img src="imagens/prof.jpg" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+      <div class="d-flex justify-content-center ">
+        <img src="imagens/perfil2.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
       </div>
       <div class="card-body text-center text-light">
         <h4 class="card-title"><strong>Sobre mim</strong></h4>
@@ -342,8 +347,49 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
         <hr>
         <h4 class="card-title"><strong>Editar perfil</strong></h4>
         <button class="card-text btn btn-success"><a class="badge badge-success" href="#">Alterar imagem</a></button>
-        <button class="card-text btn btn-success"><a class="badge badge-success" href="#">Editar perfil</a></button>
+        <button class="card-text btn btn-success"><a class="badge badge-success" data-toggle="modal" data-target="#editperfil" href="#">Editar perfil</a></button>
+        <ul class="list-group ">
+        <li class="list-item">
+                    <!--inicio do modal cadastro -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="editperfil" tabindex="-1" role="dialog" aria-labelledby="editperfils" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="editperfils">Cadastro</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
 
+                            <form method="post" action="acao.php" >
+                                <div class="form-group">
+                                  <label class="text-danger" for="nickj">Nome Completo ou Nick <span class="text-danger">*</span></label>
+                                  <input type="text" class="form-control" id="nickj" name="nickj" aria-describedby="nomecompletoHelp" maxlength="45" placeholder="<?php echo $informacao['nome']; ?>" required>
+
+                                </div>
+                                <div class="form-group">
+                                  <label class="text-danger" for="escola">Nome da Escola <span class="text-danger">*</span></label>
+                                  <input type="text" class="form-control" id="escola" name="escola" aria-describedby="nescola" maxlength="45" placeholder="<?php echo $informacao['nome_escolal']; ?>" required>
+                                </div>
+                                <div class="form-group">
+                                  <label class="text-danger" for="dcp">Nome da Disciplina <span class="text-danger">*</span></label>
+                                  <input type="text" class="form-control" id="dcp" name="dcp" aria-describedby="diciplina" maxlength="15" placeholder="<?php echo $informacao['diciplina']; ?>" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" name="salvar" value="<?php $informacao['idcadastro']; ?>">Salvar</button>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--fim do modal cadastro -->
+
+        </li>
+      </ul>
 
       </div>
     </div>
@@ -352,7 +398,7 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
   ?>
   <div class="card  col-md-3 col-lg-4 mt-2 bg-primary">
     <h1 class="card-title text-center text-light">Meu Perfil</h1>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center ">
       <img src="imagens/perfil.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
     </div>
     <div class="card-body text-center text-light">
@@ -393,8 +439,8 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
          <h2>Deixe seu comentário</h2>
          <form class="" action="acao.php" method="post">
          <div class="row">
-           <div class="col-4 col-md-1 mt-2">
-             <img src="imagens/prof.jpg" alt="perfil" class="perfil">
+           <div class="col-4 col-md-1 mt-2 ">
+             <img src="imagens/perfil2.png" alt="perfil" class="perfil">
            </div>
            <div class="col-8 col-md-4">
              <textarea name="textamento" rows="8" cols="80" maxlength="400"></textarea>
@@ -416,15 +462,15 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
 <!--fim meio-->
 <!--area de exibir comentario-->
 <h2 class="text-center">Comentários</h2>
+<section class="comenta ml-5 " style="max-width:90%;">
 <?php
   if (count($coment)> 0) {
     foreach ($coment as $v) {
       ?>
-      <section class="comenta ml-5 " style="max-width:90%;">
         <form class="form-group">
         <div class="row hrd">
           <div class="col-4 col-md-2 mt-2">
-            <img src="imagens/prof.jpg" alt="perfil" class="perfil">
+            <img src="imagens/perfil2.png" alt="perfil" class="perfil">
           </div>
           <div class="col-12 col-md-4 ">
         <p>
@@ -460,13 +506,13 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
         </div>
 
       </form>
-      </section>
       <?php
     }
   }else {
     echo "Ainda não há comentarios aqui!!";
   }
  ?>
+</section>
 
 
 <!--inicio footer-->

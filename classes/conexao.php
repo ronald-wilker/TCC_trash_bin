@@ -22,7 +22,7 @@ class Conect
   public function Conn()
   {
 
-    define('CHARSET', 'utf8');
+    //define('CHARSET', 'utf8');
     try {
       if(is_null(self::$pdo)){
         $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');

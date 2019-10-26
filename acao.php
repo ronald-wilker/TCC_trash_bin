@@ -20,7 +20,6 @@ $comt->buscarcomentario();
 
 if (isset($_POST['cadastro']))
 {
-   echo "estou aqui jcaralho!";
   $nomep = htmlentities(addslashes($_POST['nomep']));
   $sele = htmlentities(addslashes($_POST['sele']));
   $nescola = htmlentities(addslashes($_POST['nescola']));
@@ -30,9 +29,9 @@ if (isset($_POST['cadastro']))
   $senha2 = htmlentities(addslashes($_POST['senha2']));
   if (!empty($nomep) && !empty($sele) && !empty($nescola) && !empty($ndiciplina) && !empty($email) && !empty($senha) && !empty($senha2))
  {
-   echo "estou aqui 2";
+
            if ($senha == $senha2) {
-             echo "estou aqui 3";
+
              if ($us->cadastrar($nomep, $sele, $nescola, $ndiciplina, $email, $senha)){
 
                $resp = base64_encode("Cadastrado com sucesso!");
@@ -109,30 +108,26 @@ if (isset($_POST['btncomentario']))
 
 
 //excluir comentario pega valores de variaveis
-
-var_dump($_SESSION);
-
 if (isset($_GET['id_exc'])) {
-
-
+  $idcomentario = htmlentities(addslashes($_GET['id_exc']));
+  echo $n = htmlentities(addslashes($_GET['nivel']));
 
   if (isset($_SESSION['id_usuario']))
    {
-      $comt->excluircomentario($idcadastro, $_SESSION['id_usuario'], $_GET['nivel']);
+      $comt->excluircomentario($idcomentario, $_SESSION['id_usuario'], $n);
       header("location:index.php");
 
-    }
-}
-if (isset($_SESSION['id_master']))
+    }elseif (isset($_SESSION['id_master']))
  {
    try {
-     $comt->excluircomentario($idcadastro, $_SESSION['id_master'],$_GET['nivel']);
-     base64_decode($resp = "Excluido comentário com sucesso!!");
-     header("location:index.php?msg=".$resp);
+     $comt->excluircomentario($idcomentario, $_SESSION['id_master'],$n);
+     $resp = base64_encode("Excluido comentário com sucesso!!");
+    header("location:index.php?msg=".$resp);
    }catch(Exception $ex){
      echo $ex->getMessage();
    }
 
+ }
  }
 
 

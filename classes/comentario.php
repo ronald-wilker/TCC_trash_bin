@@ -15,7 +15,7 @@ class Comentario
   public function buscarcomentario()
   {
     //selecionar comentario
-    $cmd = $this->pdo->Conn()->prepare("SELECT * , (SELECT `nome` FROM `cadastro` WHERE `idcadastro` = `cadastro_idcadastro`) as idusuario FROM `comentario` ORDER BY datacomentario DESC");
+    $cmd = $this->pdo->Conn()->prepare("SELECT * , (SELECT `nome` FROM `cadastro` WHERE `idcadastro` = `cadastro_idcadastro`) as idusuario FROM `comentario` ORDER BY hora DESC");
     $cmd->execute();
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
@@ -41,19 +41,19 @@ class Comentario
   public function excluircomentario($idcomentario, $idcadastro, $n)
   {
     try{
-      if ($idcadastro == 2) {//administrador
+      if ($n == 2) {//administrador
         //excluir comentario
         $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id");
         $cmd->bindValue(":id", $idcomentario , PDO::PARAM_INT);
         $cmd->execute();
-        $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
       }else
       {
         $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id AND cadastro_idcadastro = :idcadastro ");
         $cmd->bindValue(":id", $idcomentario , PDO::PARAM_INT);
         $cmd->bindValue(":idcadastro", $idcadastro , PDO::PARAM_INT);
         $cmd->execute();
-        $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+
       }
     }catch(Exception $ex){
       echo $ex->getMessage();
