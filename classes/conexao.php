@@ -25,7 +25,6 @@ class Conect
     define('CHARSET', 'utf8');
     try {
       if(is_null(self::$pdo)){
-
         $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
         self::$pdo = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->usuario, $this->senha,$opcoes);
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

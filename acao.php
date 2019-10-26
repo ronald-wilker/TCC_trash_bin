@@ -3,15 +3,24 @@
 //-2 guarda dados dentro de variaveis
 //-3 enviar dados colhidos para classe, funcao cadastrar
 //-4 verificar o retorno
+
+
+
 include_once 'classes/usuario.php';
+
 include_once 'classes/comentario.php';
 $us = new Usuario;
+
 $comt = new Comentario;
-//$comtario->buscarcomentario();
+
+
+$comt->buscarcomentario();
    session_start();
+
 
 if (isset($_POST['cadastro']))
 {
+   echo "estou aqui jcaralho!";
   $nomep = htmlentities(addslashes($_POST['nomep']));
   $sele = htmlentities(addslashes($_POST['sele']));
   $nescola = htmlentities(addslashes($_POST['nescola']));
@@ -21,8 +30,9 @@ if (isset($_POST['cadastro']))
   $senha2 = htmlentities(addslashes($_POST['senha2']));
   if (!empty($nomep) && !empty($sele) && !empty($nescola) && !empty($ndiciplina) && !empty($email) && !empty($senha) && !empty($senha2))
  {
+   echo "estou aqui 2";
            if ($senha == $senha2) {
-
+             echo "estou aqui 3";
              if ($us->cadastrar($nomep, $sele, $nescola, $ndiciplina, $email, $senha)){
 
                $resp = base64_encode("Cadastrado com sucesso!");
@@ -74,23 +84,56 @@ if (isset($_POST['cadastro']))
     header("location:index.php?msge=".$resp);
   }
 }
-//excluir comentario
-if (isset($_GET['id_exc'])) {
-$idcadastro = htmlentities(addslashes($_GET['id_exc']));
+
+//inserir comentario pega valores de variaveis
+
+if (isset($_POST['btncomentario']))
+{
+
+  $comentario = htmlentities(addslashes($_POST['textamento']));
 
   if (isset($_SESSION['id_usuario']))
    {
-      $comtario->excluircomentario($idcadastro, $_SESSION['id_usuario']);
-      header("location:index.php");
+     $comt->inserircomentario( $comentario, $_SESSION['id_usuario'] );
+
+     header("location:index.php");
 
     }elseif (isset($_SESSION['id_master']))
-     {
-      $comtario->excluircomentario($idcadastro, $_SESSION['id_master']);
-      $resp = "Excluido comentário com sucesso!!"
-      header("location:index.php?msg=".$resp);
+    {
+      $comt->inserircomentario( $comentario, $_SESSION['id_master'] );
 
+      header("location:index.php");
      }
+
 }
+
+
+//excluir comentario pega valores de variaveis
+
+var_dump($_SESSION);
+
+if (isset($_GET['id_exc'])) {
+
+
+
+  if (isset($_SESSION['id_usuario']))
+   {
+      $comt->excluircomentario($idcadastro, $_SESSION['id_usuario'], $_GET['nivel']);
+      header("location:index.php");
+
+    }
+}
+if (isset($_SESSION['id_master']))
+ {
+   try {
+     $comt->excluircomentario($idcadastro, $_SESSION['id_master'],$_GET['nivel']);
+     base64_decode($resp = "Excluido comentário com sucesso!!");
+     header("location:index.php?msg=".$resp);
+   }catch(Exception $ex){
+     echo $ex->getMessage();
+   }
+
+ }
 
 
 

@@ -2,8 +2,8 @@
   include_once 'classes/usuario.php';
   include_once 'classes/comentario.php';
   $us = new Usuario;
-  $comt = new Comentario;
-  //$comtario->buscarcomentario();
+  $comtario = new Comentario;
+  $coment  = $comtario->buscarcomentario();
   session_start();
   if (isset($_SESSION['id_usuario']))
    {
@@ -14,8 +14,8 @@
       $informacao =  $us->buscarDadosUsuarios($_SESSION['id_master']);
 
      }
-     $msg = $_REQUEST['msg'];
-     $msge = $_REQUEST['msge'];
+     @$msg = $_REQUEST['msg'];
+     @$msge = $_REQUEST['msge'];
     if ($msg) {
       ?>
           <div id="erro" class="alert alert-success alert-dismissible fade show">
@@ -386,26 +386,39 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
       in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
       non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       <!--comentario-->
-      <h2>Deixe seu comentário</h2>
-      <form class="" action="index.html" method="post">
-      <div class="row">
-        <div class="col-4 col-md-1 mt-2">
-          <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-        </div>
-        <div class="col-8 col-md-4">
-          <textarea name="text" rows="8" cols="80" maxlength="400"></textarea>
-        </div>
-      </div>
-      <input class="btn btn-sm btn-primary mt-2" type="submit" name="comentario" value="PUBICAR COMENTÁRIO">
-    </form>
+      <?php
+      if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_master']))
+       {
+         ?>
+         <h2>Deixe seu comentário</h2>
+         <form class="" action="acao.php" method="post">
+         <div class="row">
+           <div class="col-4 col-md-1 mt-2">
+             <img src="imagens/prof.jpg" alt="perfil" class="perfil">
+           </div>
+           <div class="col-8 col-md-4">
+             <textarea name="textamento" rows="8" cols="80" maxlength="400"></textarea>
+           </div>
+         </div>
+         <input class="btn btn-sm btn-primary mt-2" type="submit" name="btncomentario" value="PUBICAR COMENTÁRIO">
+       </form>
+
+          <?php
+        }else
+         {
+           echo "sem permissão";
+      }
+         ?>
+
+
 </div>
 
 <!--fim meio-->
 <!--area de exibir comentario-->
 <h2 class="text-center">Comentários</h2>
 <?php
-  if (count($comtario)> 0) {
-    foreach ($comtario as $v) {
+  if (count($coment)> 0) {
+    foreach ($coment as $v) {
       ?>
       <section class="comenta ml-5 " style="max-width:90%;">
         <form class="form-group">
@@ -415,10 +428,10 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
           </div>
           <div class="col-12 col-md-4 ">
         <p>
-         <span class="font-weight-bold mr-1"><?php echo $v['nome']; ?></span>
+         <span class="font-weight-bold mr-1"> <?php echo $v['idusuario']; ?> </span>
           <span class="mr-1">
             <?php $data = new DateTime($v['datacomentario']);
-                  $data->format('d/m/Y');
+                echo  $data->format('d/m/Y');
                   echo "-";
 
                   echo $v['hora'];
@@ -427,22 +440,22 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
               <?php
               if (isset($_SESSION['id_usuario']))
                { //verificando se o comentario e do usuario da sessao
-                  if ($_SESSION['id_usuario'] == $v['datacomentario'] )
+                  if ($_SESSION['id_usuario'] == $v['cadastro_idcadastro'] )
                    {
                     ?>
-                    <a href="acao.php?id_exc= <?php echo $v['idcomentario']; ?>" class="badge badge-danger">Excluir</a> </span>
+                    <a href="acao.php?id_exc=<?php echo $v['idcomentario'];?>&nivel=1" class="badge badge-danger">Excluir</a> </span>
                     <?php
                   }
 
                 }elseif (isset($_SESSION['id_master']))
                  {
                   ?>
-                  <a href="acao.php?id_exc= <?php echo $v['idcomentario']; ?>" class="badge badge-danger">Excluir</a> </span>
+                  <a href="acao.php?id_exc=<?php echo $v['idcomentario'];?>&nivel=2" class="badge badge-danger">Excluir</a> </span>
                   <?php
                  }
                ?>
         </p>
-          <p class="font-weight-bold"><?php $v['comentario']; ?></p>
+          <p class="font-weight-bold"><?php echo $v['comentario']; ?></p>
           </div>
         </div>
 

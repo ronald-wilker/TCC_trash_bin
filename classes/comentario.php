@@ -3,6 +3,7 @@
  /**
  *
  */
+  date_default_timezone_set('America/Belem');
 class Comentario
 {
   public function __construct()
@@ -14,29 +15,52 @@ class Comentario
   public function buscarcomentario()
   {
     //selecionar comentario
-    $cmd = $this->pdo->Conn()->prepare("SELECT * , (SELECT `nome` FROM `cadastro` WHERE `idcadastro` = `cadastro_idcadastro`)
-     as idusuario FROM `comentario` ORDER BY datacomentario DESC");
+    $cmd = $this->pdo->Conn()->prepare("SELECT * , (SELECT `nome` FROM `cadastro` WHERE `idcadastro` = `cadastro_idcadastro`) as idusuario FROM `comentario` ORDER BY datacomentario DESC");
     $cmd->execute();
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
   }
-  public function excluircomentario($idcomentario, $idcadastro)
+
+  //inserir comentario
+  public function inserircomentario(  $comentario ,$idcadastro)
   {
-    if ($idcadastro == 1) {//administrador
-      //excluir comentario
-      $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id");
-      $cmd = bindValue(":id", $idcomentario , PDO::PARAM_INT);
+      //inserir comentario
+      $id  = null;
+      $campo = "`idcomentario`, `comentario`, `datacomentario`, `hora`, `cadastro_idcadastro`";
+      $cmd = $this->pdo->Conn()->prepare("INSERT INTO `comentario` ($campo) VALUES (:id,:comt,:dia,:hra,:fkcad)");
+      $cmd->bindValue(":id"   ,  $id);
+      $cmd->bindValue(":comt" ,  $comentario );
+      $cmd->bindValue(":dia"  ,  date('Y-m-d') );
+      $cmd->bindValue(":hra"  ,  date('H:i') );
+      $cmd->bindValue(":fkcad",  $idcadastro );
       $cmd->execute();
-      $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
-    }else
-    {
-      $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id AND cadastro_idcadastro = :idcadastro ");
-      $cmd = bindValue(":id", $idcomentario , PDO::PARAM_INT);
-      $cmd = bindValue(":idcadastro", $idcadastro , PDO::PARAM_INT);
-      $cmd->execute();
-      $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
-    }
   }
+
+
+  //excluir comentario
+  public function excluircomentario($idcomentario, $idcadastro, $n)
+  {
+    try{
+      if ($idcadastro == 2) {//administrador
+        //excluir comentario
+        $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id");
+        $cmd->bindValue(":id", $idcomentario , PDO::PARAM_INT);
+        $cmd->execute();
+        $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      }else
+      {
+        $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE idcomentario = :id AND cadastro_idcadastro = :idcadastro ");
+        $cmd->bindValue(":id", $idcomentario , PDO::PARAM_INT);
+        $cmd->bindValue(":idcadastro", $idcadastro , PDO::PARAM_INT);
+        $cmd->execute();
+        $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+      }
+    }catch(Exception $ex){
+      echo $ex->getMessage();
+    }
+
+  }
+
 
 
 
