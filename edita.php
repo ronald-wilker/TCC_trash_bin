@@ -8,24 +8,24 @@
   }
 $informacao =  $us->buscarTodoDadoUse();
 
-     $msg = $_REQUEST['msg'];
-     $msge = $_REQUEST['msge'];
-    if ($msg) {
-      ?>
-          <div id="erro" class="alert alert-success alert-dismissible fade show">
-          <button type="button" class="close" onclick="$('#erro').hide()">&times;</button>
-          <?php echo $msg;  ?>
-           </div>
-      <?php
-    }elseif ($msge) {
-    ?>
-            <div id="erro" class="alert alert-danger alert-dismissible fade show">
-            <button type="button" class="close" onclick="$('#erro').hide()">&times;</button>
-            <?php echo $msge;  ?>
-             </div>
-    <?php
-    }
+@$msg = $_REQUEST['msg'];
+@$msge = $_REQUEST['msge'];
+if ($msg) {
  ?>
+     <div id="erro" class="alert alert-success alert-dismissible fade show">
+     <button type="button" class="close" onclick="$('#erro').hide()">&times;</button>
+   <div class="text-center">  <?php echo base64_decode($msg);  ?> </div>
+      </div>
+ <?php
+}elseif ($msge) {
+?>
+       <div id="erro" class="alert alert-danger alert-dismissible fade show">
+       <button type="button" class="close" onclick="$('#erro').hide()">&times;</button>
+     <div class="text-center"> <?php echo base64_decode($msge);  ?> </div>
+        </div>
+<?php
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="utf-8">
@@ -65,7 +65,7 @@ $informacao =  $us->buscarTodoDadoUse();
           </ul>
            <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                   <a class="nav-link text-light" href="sair.php" >Sair</a>
+                   <a class="nav-link text-light" href="classes/sair.php" >Sair</a>
                 </li>
            </ul>
 
@@ -83,7 +83,7 @@ $informacao =  $us->buscarTodoDadoUse();
       <?php
 
              foreach ($informacao as $key){ ?>
-               <form   method="post" action="update.php"  >
+               <form   method="post" action="classes/update.php"  >
       <table class="table ">
         <thead class="thead-dark" w-100>
             <tr>
@@ -96,26 +96,30 @@ $informacao =  $us->buscarTodoDadoUse();
         <tr class="table-primary">
           <td>
             <label for="id">Identificador:</label>
-            <input class="form-control" id="id"  value="<?php   echo $key['idcadastro']?>">
+            <input class="form-control" id="id" name="id"  value="<?php   echo $key['idcadastro']?>">
             <small id="emailHelp" class="form-text text-muted">Id do usuario.</small>
           </td>
           <td>
               <label for="nomep">Nome:</label>
-              <input class="form-control" id="nomep" name="nomep" >
+              <input class="form-control" id="nomep" name="nomep" value="<?php   echo $key['nome'];?>" >
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['nome'];?>.</small>
 
             </td>
           </tr>
         <tr class="table-secondary">
           <td>
-            <label for="sele">Sexo:</label>
-            <input class="form-control" id="sele" name="sele"  >
-            <small id="emailHelp" class="form-text text-muted"><?php   echo $key['sexo'];?>.</small>
+            <label for="selecione">Sexo</label>
+            <select name="sele" class="form-control" id="selecione">
+              <option value="<?php   echo $key['sexo'];?>"><?php   echo $key['sexo'];?></option>
+              <option value="masculino">Masculino</option>
+              <option value="feminino">Feminino</option>
+            </select>
+            <small id="emailHelp" class="form-text text-muted"><?php   echo $key['sexo'];?></small>
 
           </td>
           <td>
             <label for="nescola">Escola:</label>
-            <input class="form-control" id="nescola" name="nescola"  >
+            <input class="form-control" id="nescola" name="nescola" value="<?php   echo $key['nome_escolal'];?>" >
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['nome_escolal'];?>.</small>
 
           </td>
@@ -123,13 +127,13 @@ $informacao =  $us->buscarTodoDadoUse();
         <tr class="table-success">
           <td>
             <label for="ndiciplina">Disciplina:</label>
-            <input class="form-control"  id="ndiciplina" name="ndiciplina" >
+            <input class="form-control"  id="ndiciplina" name="ndiciplina" value="<?php   echo $key['diciplina'];?>">
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['diciplina'];?>.</small>
 
           </td>
           <td>
             <label for="email">E-mail:</label>
-            <input class="form-control"  id="email" name="email" >
+            <input class="form-control"  id="email" name="email" value="<?php   echo $key['email'];?>">
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['email'];?>.</small>
 
           </td>
@@ -137,13 +141,13 @@ $informacao =  $us->buscarTodoDadoUse();
         <tr class="table-info">
           <td>
             <label for="senha">Senha:</label>
-            <input class="form-control"  id="senha" name="senha" >
-            <small id="emailHelp" class="form-text text-muted"><?php   echo $key['senha'];?>.</small>
+            <input class="form-control"  id="senha" name="senha" value="<?php   echo $key['senha'];?>">
+            <small id="emailHelp" class="form-text text-muted">senha exibida codificada.</small>
 
           </td>
           <td>
             <label for="nivel">Nivel de acesso:</label>
-            <input class="form-control"  id="nivel" name="nivel" >
+            <input class="form-control"  id="nivel" name="nivel" value="<?php   echo $key['nivel'];?>" >
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['nivel'];?>.</small>
 
           </td>

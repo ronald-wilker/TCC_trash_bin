@@ -7,10 +7,10 @@
 
 
 include_once 'classes/usuario.php';
-
 include_once 'classes/comentario.php';
-$us = new Usuario;
 
+
+$us = new Usuario;
 $comt = new Comentario;
 
 
@@ -108,7 +108,8 @@ if (isset($_POST['btncomentario']))
 
 
 //excluir comentario pega valores de variaveis
-if (isset($_GET['id_exc'])) {
+if (isset($_GET['id_exc']))
+{
   $idcomentario = htmlentities(addslashes($_GET['id_exc']));
   echo $n = htmlentities(addslashes($_GET['nivel']));
 
@@ -118,17 +119,20 @@ if (isset($_GET['id_exc'])) {
       header("location:index.php");
 
     }elseif (isset($_SESSION['id_master']))
- {
-   try {
-     $comt->excluircomentario($idcomentario, $_SESSION['id_master'],$n);
-     $resp = base64_encode("Excluido comentário com sucesso!!");
-    header("location:index.php?msg=".$resp);
-   }catch(Exception $ex){
-     echo $ex->getMessage();
-   }
+       {
+         try {
+           $comt->excluircomentario($idcomentario, $_SESSION['id_master'],$n);
+           $resp = base64_encode("Excluido comentário com sucesso!!");
+          header("location:index.php?msg=".$resp);
+         }catch(Exception $ex){
+           echo $ex->getMessage();
+         }
 
+       }
  }
- }
+
+
+
 
 
 

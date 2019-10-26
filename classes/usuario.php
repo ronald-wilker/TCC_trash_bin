@@ -73,7 +73,7 @@ class Usuario
   public function buscarTodoDadoUse()
   {
     $cmd = $this->pdo->Conn()->prepare("SELECT * from cadastro");
-    $cmd->bindValue(":id",$id , PDO::PARAM_STR);
+    $cmd->bindValue(":id",@$id , PDO::PARAM_STR);
     $cmd->execute();
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;

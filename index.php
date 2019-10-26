@@ -228,9 +228,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="arte">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
      </div>
       <div class="dropdown show mt-1">
@@ -239,9 +239,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ciencia">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Trash Bin</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -250,9 +250,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ed_fisica">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -261,9 +261,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="geografia">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -272,9 +272,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="historia">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -283,9 +283,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ingles">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -294,9 +294,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ling_port">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
       </div>
     </div>
@@ -426,11 +426,7 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
     <img src="imagens/logotipo.png" class="center" alt="logotipo"  style="max-width:30%;max-height:200px;">
   </div>
   <h1 class="display-4 text-center">Quem Somos</h1>
-  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-      in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p class="lead text-center text-justify"> Somos uma equipe de desenvolvedores sempre disposta a ofertar os melhores produtos, visando sua satisfação. Venha conosco em busca de uma nova fase para a sua vida. Sempre estaremos prontos para atendê-lo e satisfazê-lo.</p>
       <!--comentario-->
       <?php
       if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_master']))
@@ -452,7 +448,7 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
           <?php
         }else
          {
-           echo "sem permissão";
+           echo "Cadastre-se para deixar seu comentário!";
       }
          ?>
 
