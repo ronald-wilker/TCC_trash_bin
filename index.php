@@ -363,21 +363,21 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
                           </div>
                           <div class="modal-body">
 
-                            <form method="post" action="acao.php" >
+                            <form method="post" action="classes/update.php" >
                                 <div class="form-group">
                                   <label class="text-danger" for="nickj">Nome Completo ou Nick <span class="text-danger">*</span></label>
-                                  <input type="text" class="form-control" id="nickj" name="nickj" aria-describedby="nomecompletoHelp" maxlength="45" placeholder="<?php echo $informacao['nome']; ?>" required>
+                                  <input type="text" class="form-control" id="nickj" name="nickj" aria-describedby="nomecompletoHelp" maxlength="45" value="<?php echo $informacao['nome']; ?>" required>
 
                                 </div>
                                 <div class="form-group">
                                   <label class="text-danger" for="escola">Nome da Escola <span class="text-danger">*</span></label>
-                                  <input type="text" class="form-control" id="escola" name="escola" aria-describedby="nescola" maxlength="45" placeholder="<?php echo $informacao['nome_escolal']; ?>" required>
+                                  <input type="text" class="form-control" id="escola" name="escola" aria-describedby="nescola" maxlength="45" value="<?php echo $informacao['nome_escolal']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                   <label class="text-danger" for="dcp">Nome da Disciplina <span class="text-danger">*</span></label>
-                                  <input type="text" class="form-control" id="dcp" name="dcp" aria-describedby="diciplina" maxlength="15" placeholder="<?php echo $informacao['diciplina']; ?>" required>
+                                  <input type="text" class="form-control" id="dcp" name="dcp" aria-describedby="diciplina" maxlength="15" value="<?php echo $informacao['diciplina']; ?>" required>
                                 </div>
-                                <button type="submit" class="btn btn-primary" name="salvar" value="<?php $informacao['idcadastro']; ?>">Salvar</button>
+                                <button type="submit" class="btn btn-primary" name="salvar" value="<?php echo $informacao['idcadastro']; ?>">Salvar </button>
                             </form>
                           </div>
                           <div class="modal-footer">
@@ -399,7 +399,7 @@ Na fase 02, encontre os pares correspondentes pondo em prática o que você apre
   <div class="card  col-md-3 col-lg-4 mt-2 bg-primary">
     <h1 class="card-title text-center text-light">Meu Perfil</h1>
     <div class="d-flex justify-content-center ">
-      <img src="imagens/perfil.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+      <img src="imagens/perfil2.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
     </div>
     <div class="card-body text-center text-light">
       <h4 class="card-title"><strong>Sobre mim</strong></h4>

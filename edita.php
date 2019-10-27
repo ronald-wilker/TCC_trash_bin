@@ -139,31 +139,24 @@ if ($msg) {
           </td>
         </tr>
         <tr class="table-info">
-          <td>
-            <label for="senha">Senha:</label>
-            <input class="form-control"  id="senha" name="senha" value="<?php   echo $key['senha'];?>">
-            <small id="emailHelp" class="form-text text-muted">senha exibida codificada.</small>
 
-          </td>
           <td>
             <label for="nivel">Nivel de acesso:</label>
             <input class="form-control"  id="nivel" name="nivel" value="<?php   echo $key['nivel'];?>" >
             <small id="emailHelp" class="form-text text-muted"><?php   echo $key['nivel'];?>.</small>
 
           </td>
-        </tr>
-        <tr class="table-primary">
+          <td>
+            <button type="submit" name="envia" value="editar" class="btn btn-primary mr-3">Editar</button>
+            <button type="submit" name="envia" value="<?php echo $key['idcadastro']?>" class="btn btn-danger">Excluir</button>
 
-        <td>
-          <button type="submit" name="envia" value="editar" class="btn btn-primary">Editar</button>
-        </td>
+          </td>
+        </tr>
+
+
     </form>
-    <form action="del.php" method="post">
-         <td>
-          <button type="submit" name="envia" value="<?php echo $key['idcadastro']?>" class="btn btn-danger">Excluir</button>
-        </td>
-    </form>
-      </tr>
+
+
 </table>
        <?php
         };
@@ -175,24 +168,12 @@ if ($msg) {
        <img src="imagens/logotipo.png" class="center" alt="logotipo"  style="max-width:30%;max-height:200px;">
      </div>
      <h1 class="display-4 text-center">Quem Somos</h1>
-     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-         in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-         non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-         <!--comentario-->
-         <h2>Deixe seu comentário</h2>
-         <form class="" action="index.html" method="post">
-         <div class="row">
-           <div class="col-4 col-md-1 mt-2">
-             <img src="imagens/prof.jpg" alt="perfil" class="perfil">
-           </div>
-           <div class="col-8 col-md-4">
-             <textarea name="text" rows="8" cols="80" maxlength="400"></textarea>
-           </div>
-         </div>
-         <input class="btn btn-sm btn-primary mt-2" type="submit" name="comentario" value="PUBICAR COMENTÁRIO">
-       </form>
+     <p class="lead text-center text-justify"> Somos uma equipe de desenvolvedores
+       sempre disposta a ofertar os melhores produtos, visando sua satisfação.
+       Venha conosco em busca de uma nova fase para a sua vida. Sempre estaremos prontos
+       para atendê-lo e satisfazê-lo.</p>
+
+         
    </div>
    <!--inicio footer-->
    <footer class="text-light bg-dark corlink">
