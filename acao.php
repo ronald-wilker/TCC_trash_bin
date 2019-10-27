@@ -130,6 +130,18 @@ if (isset($_GET['id_exc']))
 
        }
  }
+//excluir usuario pelo adm pega valores de variaveis
+if (isset($_GET['id_excu']))
+{
+  $iduse = htmlentities(addslashes($_GET['id_excu']));
+           try {
+         $us->excluirUse($iduse);
+         $resp = base64_encode("Excluido Usuário com sucesso!!");
+         header("location:edita.php?msg=".$resp);
+       }catch(Exception $ex){
+         echo $ex->getMessage();
+       }
+ }
 
 
 

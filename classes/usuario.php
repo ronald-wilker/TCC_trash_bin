@@ -78,6 +78,24 @@ class Usuario
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
   }
+  public function excluirUse($iduse)
+  {
+    //excluir Usuario
+    if ($iduse)
+     {
+      $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE cadastro_idcadastro = :id");
+      $cmd->bindValue(":id", $iduse , PDO::PARAM_INT);
+      $cmd->execute();
+      $cmd = $this->pdo->Conn()->prepare("DELETE FROM `cadastro` WHERE idcadastro = :id");
+      $cmd->bindValue(":id", $iduse , PDO::PARAM_INT);
+      $cmd->execute();
+    }else
+      {
+        $cmd = $this->pdo->Conn()->prepare("DELETE FROM `cadastro` WHERE idcadastro = :id");
+        $cmd->bindValue(":id", $iduse , PDO::PARAM_INT);
+        $cmd->execute();
+      }
+  }
 }
 
 

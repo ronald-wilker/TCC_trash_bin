@@ -54,7 +54,7 @@ if ($msg) {
 
 
             <li class="nav-item active mr-auto">
-                <a class="nav-link text-light" href="index.php" >Início<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-light" href="index.php" >Início</a>
             </li>
             <li class="nav-item ">
                 <a class="nav-link text-light" href="#contatoo" >Contato</a>
@@ -64,6 +64,69 @@ if ($msg) {
             </li>
           </ul>
            <ul class="navbar-nav mr-auto">
+             <li class="nav-item">
+       <!--inicio do modal cadastro -->
+       <!-- Modal -->
+       <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body">
+               <form method="post" action="acao.php" >
+                   <div class="form-group">
+                     <label for="nomep">Nome Completo <span class="text-danger">*</span></label>
+                     <input type="text" class="form-control" id="nomep" name="nomep" aria-describedby="nomecompletoHelp" maxlength="45" placeholder="Seu Nome" required>
+                        <small id="emailHelp" class="form-text text-muted">Nome completo ou nick de usuario.</small>
+                   </div>
+                   <div class="form-group">
+                      <label for="selecione">Selecione o Sexo</label>
+                      <select name="sele" class="form-control" id="selecione">
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                      </select>
+                    </div>
+                   <div class="form-group">
+                     <label for="nescola">Nome da Escola  <span class="text-danger">*</span> </label>
+                     <input type="text" class="form-control" id="nescola" name="nescola" aria-describedby="nescola" maxlength="45" placeholder="Nome da Escola" required>
+                        <small id="emailHelp" class="form-text text-muted">Original ou ficticio.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="diciplina">Nome da Disciplina  <span class="text-danger">*</span> </label>
+                     <input type="text" class="form-control" id="diciplina" name="ndiciplina" aria-describedby="diciplina" maxlength="15" placeholder="Nome da Disciplina" required>
+                      <small id="emailHelp" class="form-text text-muted">Original ou ficticio.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="exampleInputEmail1">Endereço de email <span class="text-danger">*</span></label>
+                     <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp" maxlength="45" placeholder="Seu email" required>
+                     <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="exampleInputPassword1">Senha <span class="text-danger">*</span></label>
+                     <input type="password" class="form-control" id="exampleInputPassword1" name="senha" maxlength="20" placeholder="Senha" required>
+                       <small id="emailHelp" class="form-text text-muted">maximo 20  caracteres.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="exampleInputPassword2">Confirmar Senha <span class="text-danger">*</span></label>
+                     <input type="password" class="form-control" id="exampleInputPassword2" name="senha2" maxlength="20" placeholder="Confirmar Senha" required>
+                      <small id="emailHelp" class="form-text text-muted">Redigite senha anterior.</small>
+                   </div>
+                   <button type="submit" class="btn btn-primary" name="cadastro" value="cadastro">Cadastrar</button>
+               </form>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+             </div>
+           </div>
+         </div>
+       </div>
+       <!--fim do modal cadastro -->
+               <a class="nav-link text-light " data-toggle="modal" data-target="#modalExemplo" href="#">Cadastro_jogo</a>
+             </li>
                 <li class="nav-item ">
                    <a class="nav-link text-light" href="classes/sair.php" >Sair</a>
                 </li>
@@ -148,9 +211,8 @@ if ($msg) {
           </td>
           <td>
             <button type="submit" name="envia" value="editar" class="btn btn-primary mr-3">Editar</button>
-            <button type="submit" name="envia" value="<?php echo $key['idcadastro']?>" class="btn btn-danger">Excluir</button>
-
-          </td>
+            <a type="button" href="acao.php?id_excu=<?php echo $key['idcadastro'];?>" name="gamer"  class="btn btn-danger">Excluir</a>
+            </td>
         </tr>
 
 
@@ -173,7 +235,7 @@ if ($msg) {
        Venha conosco em busca de uma nova fase para a sua vida. Sempre estaremos prontos
        para atendê-lo e satisfazê-lo.</p>
 
-         
+
    </div>
    <!--inicio footer-->
    <footer class="text-light bg-dark corlink">
