@@ -79,6 +79,11 @@ if ($msg) {
                          </div>
                          <div class="modal-body bg-dark text-light">
                            <form method="post" action="acao.php" >
+                             <div class="form-group">
+                               <label for="njogo">Nome do jogo  <span class="text-danger">*</span> </label>
+                               <input type="text" class="form-control" id="njogo" name="njogo" aria-describedby="nensino" maxlength="30" placeholder="Nome da Escola" required>
+                               <small  class="form-text text-warning">Nome do jogo. </small>
+                             </div>
                                <div class="form-group">
                                  <label for="nomep">Descrição do jogo<span class="text-danger">*</span></label>
                                  <textarea name="dscr" rows="8" cols="10" maxlength="400"></textarea>
@@ -155,7 +160,7 @@ if ($msg) {
                      <span class="caret"></span></a>
                      <ul class="dropdown-menu">
                        <li><a class="nav-link " data-toggle="modal" data-target="#modajogo" href="#">Cadastrar jogo</a></li>
-                       <li><a class="nav-link " href="editajogo.php" >Ed. Cadastro Jogo</a></li>
+                       <li><a class="nav-link " href="editajogo.php" >Editar C. Jogo</a></li>
                        <li><a class="nav-link " href="classes/sair.php" >Sair</a></li>
 
                      </ul>

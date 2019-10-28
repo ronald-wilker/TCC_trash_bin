@@ -150,6 +150,7 @@ if (isset($_GET['id_excu']))
 //cadastro do jogo
 if (isset($_POST['gamer']))
 {
+  $njogo = htmlentities(addslashes($_POST['njogo']));
   $dscr = htmlentities(addslashes($_POST['dscr']));
   $niven = htmlentities(addslashes($_POST['niven']));
   $ccurr = htmlentities(addslashes($_POST['ccurr']));
@@ -159,13 +160,37 @@ if (isset($_POST['gamer']))
   $objet = htmlentities(addslashes($_POST['objet']));
   $sele = htmlentities(addslashes($_POST['sele']));
   $fk_id = htmlentities(addslashes($_POST['fk_id']));
-  $game = array('dscr' =>$dscr,'niven' =>$niven,'ccurr' =>$ccurr,'tema' =>$tema,
+  $game = array('njogo' =>$njogo,'dscr' =>$dscr,'niven' =>$niven,'ccurr' =>$ccurr,'tema' =>$tema,
   'serie' =>$serie,'idade' =>$idade,'objet' =>$objet,'sele' =>$sele,'fk_id' =>$fk_id );
 
 
   $jogo->cadastrarJogo($game);
   $resp = base64_encode("Jogo cadastrado com sucesso!!");
   header("location:edita.php?msg=".$resp);
+}
+//atualizar do jogo
+if (isset($_POST['atugame']))
+{
+  $id = htmlentities(addslashes($_POST['atugam']));
+  $njogo = htmlentities(addslashes($_POST['njogo']));
+  $dscr = htmlentities(addslashes($_POST['dscr']));
+  $niven = htmlentities(addslashes($_POST['niven']));
+  $ccurr = htmlentities(addslashes($_POST['ccurr']));
+  $tema = htmlentities(addslashes($_POST['tema']));
+  $serie = htmlentities(addslashes($_POST['serie']));
+  $idade = htmlentities(addslashes($_POST['idade']));
+  $objet = htmlentities(addslashes($_POST['objet']));
+  $sele = htmlentities(addslashes($_POST['sele']));
+  $fk_id = htmlentities(addslashes($_POST['fk_id']));
+  $atugame = array('id' =>$id, 'njogo' =>$njogo, 'dscr' =>$dscr,'niven' =>$niven,'ccurr' =>$ccurr,'tema' =>$tema,
+  'serie' =>$serie,'idade' =>$idade,'objet' =>$objet,'sele' =>$sele,'fk_id' =>$fk_id );
+//   echo "<pre>";
+// print_r($atugame);
+// echo "</pre>";
+
+  $jogo->atualizarJogo($atugame);
+  $resp = base64_encode("Jogo atualizado com sucesso!!");
+  header("location:editajogo.php?msg=".$resp);
 
 }
 
