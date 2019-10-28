@@ -78,9 +78,23 @@ class Usuario
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
   }
+
+  //buscar categoria dos jogos
+  public function buscarCatJogo()
+  {
+    $cmd = $this->pdo->Conn()->prepare("SELECT * FROM `categoria`");
+    $cmd->execute();
+    $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+    return $dados;
+  }
+
+
+
+
+
+  //excluir Usuario
   public function excluirUse($iduse)
   {
-    //excluir Usuario
     if ($iduse)
      {
       $cmd = $this->pdo->Conn()->prepare("DELETE FROM `comentario` WHERE cadastro_idcadastro = :id");

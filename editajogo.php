@@ -1,12 +1,14 @@
 <?php
   include_once 'classes/usuario.php';
+  include_once 'classes/jogo.php';
+  $jogo = new Jogo;
   $us = new Usuario;
   session_start();
   if (!isset($_SESSION['id_master'])) {
     $msg = base64_encode("sem permissão de acesso!!");
     header('location:index.php?msge='.$msg);
   }
-$informacao =  $us->buscarTodoDadoUse();
+$game =  $jogo->buscarJogo();
 $catjo =  $us->buscarCatJogo();
 
 @$msg = $_REQUEST['msg'];
@@ -65,102 +67,95 @@ if ($msg) {
             </li>
           </ul>
            <ul class="navbar-nav mr-auto">
+
+
              <li class="nav-item">
-                   <!--inicio do modal cadastro jogo -->
-                   <!-- Modal -->
-                   <div class="modal fade" id="modajogo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog" role="document">
-                       <div class="modal-content">
-                         <div class="modal-header">
-                           <h5 class="modal-title" id="exampleModalLabel">Cadastro do Jogo</h5>
-                           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                             <span aria-hidden="true">&times;</span>
-                           </button>
-                         </div>
-                         <div class="modal-body bg-dark text-light">
-                           <form method="post" action="acao.php" >
-                               <div class="form-group">
-                                 <label for="nomep">Descrição do jogo<span class="text-danger">*</span></label>
-                                 <textarea name="dscr" rows="8" cols="10" maxlength="400"></textarea>
-                                    <small  class="form-text text-warning">Sobre o jogo.</small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="niven">Nível de ensino  <span class="text-danger">*</span> </label>
-                                 <input type="text" class="form-control" id="niven" name="niven" aria-describedby="nensino" maxlength="30" placeholder="Nome da Escola" required>
-                                    <small  class="form-text text-warning">Nível de ensino do jogo. </small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="ccurr">Componente Curricular  <span class="text-danger">*</span> </label>
-                                 <input type="text" class="form-control" id="ccurr" name="ccurr" aria-describedby="diciplina" maxlength="30" placeholder="Nome da Disciplina" required>
-                                  <small  class="form-text text-warning">Componente Curricular(disciplina).</small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="tema">Tema <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="20" placeholder="Seu email" required>
-                                 <small  class="form-text text-warning">Tema do Jogo.</small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="serie">Série <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="serie" name="serie" maxlength="20" placeholder="Senha" required>
-                                   <small  class="form-text text-warning">Série do Ensino.</small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="idade">Idade <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="idade" name="idade" maxlength="3" placeholder="Confirmar Senha" required>
-                                  <small  class="form-text text-warning">Idade de classificação.</small>
-                               </div>
-                               <div class="form-group">
-                                 <label for="ojet">Objetivos<span class="text-danger">*</span></label>
-                                 <textarea id="ojet" name="objet" rows="8" cols="10" maxlength="400"></textarea>
-                                    <small  class="form-text text-warning">Objetivos do jogo.</small>
-                               </div>
-                               <div class="form-group">
-                                  <label for="selecione">Nível de dificuldade</label>
-                                  <select name="sele" class="form-control" id="selecione">
-                                    <option value="facil">Fácil</option>
-                                    <option value="medio">Médio</option>
-                                    <option value="dificil">Difícil</option>
-                                  </select>
-                                  <small  class="form-text text-warning">Nível de dificuldade do jogo.</small>
-                                </div>
-                                <div class="form-group ">
-                                    <label for="exampleFormControlSelect2">Categoria</label>
-                                    <select  class="form-control" name="fk_id" id="exampleFormControlSelect2">
-                                      <?php
-                                     foreach ($catjo as $key){ ?>
-
-                                     <option   value="<?php echo $key['idcategoria'];?>" > <?php   echo $key['nome_cat'];?>  </option>  <?php
-                                        };
-
-
-                                       ?>
-                                      </select>
-                                       <small  class="form-text text-warning">Categoria do jogo.</small>
-                               </div>
-                               <button type="submit" class="btn btn-primary mr-3" name="gamer" value="gamer">Cadastrar</button>
-                               <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
-                           </form>
-                         </div>
-
-                       </div>
-                     </div>
+       <!--inicio do modal cadastro jogo -->
+       <!-- Modal -->
+       <div class="modal fade" id="modajogo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Cadastro do Jogo</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+             <div class="modal-body bg-dark text-light">
+               <form method="post" action="acao.php" >
+                   <div class="form-group">
+                     <label for="nomep">Descrição do jogo<span class="text-danger">*</span></label>
+                     <textarea name="dscr" rows="8" cols="10" maxlength="400"></textarea>
+                        <small  class="form-text text-warning">Sobre o jogo.</small>
                    </div>
-                   <!--fim do modal cadastro jogo -->
+                   <div class="form-group">
+                     <label for="niven">Nível de ensino  <span class="text-danger">*</span> </label>
+                     <input type="text" class="form-control" id="niven" name="niven" aria-describedby="nensino" maxlength="30" placeholder="Nome da Escola" required>
+                        <small  class="form-text text-warning">Nível de ensino do jogo. </small>
+                   </div>
+                   <div class="form-group">
+                     <label for="ccurr">Componente Curricular  <span class="text-danger">*</span> </label>
+                     <input type="text" class="form-control" id="ccurr" name="ccurr" aria-describedby="diciplina" maxlength="30" placeholder="Nome da Disciplina" required>
+                      <small  class="form-text text-warning">Componente Curricular(disciplina).</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="tema">Tema <span class="text-danger">*</span></label>
+                     <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="20" placeholder="Seu email" required>
+                     <small  class="form-text text-warning">Tema do Jogo.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="serie">Série <span class="text-danger">*</span></label>
+                     <input type="text" class="form-control" id="serie" name="serie" maxlength="20" placeholder="Senha" required>
+                       <small  class="form-text text-warning">Série do Ensino.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="idade">Idade <span class="text-danger">*</span></label>
+                     <input type="text" class="form-control" id="idade" name="idade" maxlength="3" placeholder="Confirmar Senha" required>
+                      <small  class="form-text text-warning">Idade de classificação.</small>
+                   </div>
+                   <div class="form-group">
+                     <label for="ojet">Objetivos<span class="text-danger">*</span></label>
+                     <textarea id="ojet" name="objet" rows="8" cols="10" maxlength="400"></textarea>
+                        <small  class="form-text text-warning">Objetivos do jogo.</small>
+                   </div>
+                   <div class="form-group">
+                      <label for="selecione">Nível de dificuldade</label>
+                      <select name="sele" class="form-control" id="selecione">
+                        <option value="facil">Fácil</option>
+                        <option value="medio">Médio</option>
+                        <option value="dificil">Difícil</option>
+                      </select>
+                      <small  class="form-text text-warning">Nível de dificuldade do jogo.</small>
+                    </div>
+                    <div class="form-group ">
+                        <label for="exampleFormControlSelect2">Categoria</label>
+                        <select  class="form-control" name="fk_id" id="exampleFormControlSelect2">
+                          <?php
+                         foreach ($catjo as $key){ ?>
+
+                         <option   value="<?php echo $key['idcategoria'];?>" > <?php   echo $key['nome_cat'];?>  </option>  <?php
+                            };
+
+
+                           ?>
+                          </select>
+                           <small  class="form-text text-warning">Categoria do jogo.</small>
+                   </div>
+                   <button type="submit" class="btn btn-primary mr-3" name="gamer" value="gamer">Cadastrar</button>
+                   <button type="button" class="btn btn-info" data-dismiss="modal">Fechar</button>
+               </form>
+             </div>
+
+           </div>
+         </div>
+       </div>
+       <!--fim do modal cadastro jogo -->
+         <?php echo "<a class='nav-link text-light ' href='" . $_SERVER['HTTP_REFERER'] . "'>Voltar</a>"; ?>
 
              </li>
-
-                  <li class="nav-item ">
-                  <div class="dropdown">
-                     <a class="nav-link text-light dropdown-toggle active" type="button" data-toggle="dropdown">Cadastrar e Editar
-                     <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                       <li><a class="nav-link " data-toggle="modal" data-target="#modajogo" href="#">Cadastrar jogo</a></li>
-                       <li><a class="nav-link " href="editajogo.php" >Ed. Cadastro Jogo</a></li>
-                       <li><a class="nav-link " href="classes/sair.php" >Sair</a></li>
-
-                     </ul>
-                   </div>
-                   </li>
+                <li class="nav-item ">
+                   <a class="nav-link text-light" href="classes/sair.php" >Sair</a>
+                </li>
            </ul>
 
 
@@ -172,11 +167,16 @@ if ($msg) {
       </nav>
       <!--fim topo-->
 
+
+
+
+
+
       <div class="form-group">
-          <h2  class="text-center">Usuarios Cadastrados</h2>
+          <h2  class="text-center">Jogos Cadastrados</h2>
       <?php
 
-             foreach ($informacao as $key){ ?>
+             foreach ($game as $key){ ?>
                <form   method="post" action="classes/update.php"  >
       <table class="table ">
         <thead class="thead-dark" w-100>
@@ -190,13 +190,14 @@ if ($msg) {
         <tr class="table-primary">
           <td>
             <label for="id">Identificador:</label>
-            <input class="form-control" id="id" name="id"  value="<?php   echo $key['idcadastro']?>">
+            <input class="form-control" id="id" name="id"  value="<?php   echo $key['idgames']?>">
             <small  class="form-text text-muted">Id do usuario.</small>
           </td>
           <td>
-              <label for="nomep">Nome:</label>
-              <input class="form-control" id="nomep" name="nomep" value="<?php   echo $key['nome'];?>" >
-            <small  class="form-text text-muted"><?php   echo $key['nome'];?>.</small>
+            <label for="nomep">Descrição do jogo<span class="text-danger">*</span></label>
+            <textarea name="dscr" rows="8" cols="10" maxlength="400" placeholder="<?php   echo $key['desc_jogo'];?>"></textarea>
+               <small  class="form-text text-warning">Sobre o jogo.</small>
+        
 
             </td>
           </tr>

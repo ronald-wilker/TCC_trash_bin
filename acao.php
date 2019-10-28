@@ -8,10 +8,12 @@
 
 include_once 'classes/usuario.php';
 include_once 'classes/comentario.php';
+include_once 'classes/jogo.php';
 
 
 $us = new Usuario;
 $comt = new Comentario;
+$jogo = new Jogo;
 
 
 $comt->buscarcomentario();
@@ -56,7 +58,7 @@ if (isset($_POST['cadastro']))
   $senha = htmlentities(addslashes($_POST['senha']));
   if (!empty($email) && !empty($senha))
  {
-
+       //login
 
        if ($us->entrar($email, $senha)) {
          if (isset($_SESSION['id_usuario']))
@@ -83,7 +85,8 @@ if (isset($_POST['cadastro']))
     header("location:index.php?msge=".$resp);
   }
 }
-
+////////////////////////////////////////////////////////////////
+//comentarios
 //inserir comentario pega valores de variaveis
 
 if (isset($_POST['btncomentario']))
@@ -143,8 +146,28 @@ if (isset($_GET['id_excu']))
        }
  }
 
+//////////////////////////////////////////////////////////
+//cadastro do jogo
+if (isset($_POST['gamer']))
+{
+  $dscr = htmlentities(addslashes($_POST['dscr']));
+  $niven = htmlentities(addslashes($_POST['niven']));
+  $ccurr = htmlentities(addslashes($_POST['ccurr']));
+  $tema = htmlentities(addslashes($_POST['tema']));
+  $serie = htmlentities(addslashes($_POST['serie']));
+  $idade = htmlentities(addslashes($_POST['idade']));
+  $objet = htmlentities(addslashes($_POST['objet']));
+  $sele = htmlentities(addslashes($_POST['sele']));
+  $fk_id = htmlentities(addslashes($_POST['fk_id']));
+  $game = array('dscr' =>$dscr,'niven' =>$niven,'ccurr' =>$ccurr,'tema' =>$tema,
+  'serie' =>$serie,'idade' =>$idade,'objet' =>$objet,'sele' =>$sele,'fk_id' =>$fk_id );
 
 
+  $jogo->cadastrarJogo($game);
+  $resp = base64_encode("Jogo cadastrado com sucesso!!");
+  header("location:edita.php?msg=".$resp);
+
+}
 
 
 

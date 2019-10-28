@@ -25,6 +25,10 @@ hr{
 }
 
 
+/*dropdown*/
+.dropdown:hover>.dropdown-menu {
+     display: block;
+}
 /*COMENTARIO AREA*/
 textarea{
   width: 85%;

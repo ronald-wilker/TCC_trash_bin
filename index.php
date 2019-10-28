@@ -1,8 +1,11 @@
 <?php
   include_once 'classes/usuario.php';
   include_once 'classes/comentario.php';
+  include_once 'classes/jogo.php';
   $us = new Usuario;
   $comtario = new Comentario;
+  $jogo = new Jogo;
+  $game  = $jogo->buscarJogo();
   $coment  = $comtario->buscarcomentario();
   session_start();
   if (isset($_SESSION['id_usuario']))
@@ -309,23 +312,28 @@
     </ul>
   </div>
   <!--parte 2 do meio-->
+  <?php
+     foreach ($game as $key ) {
+
+     ?>
+
   <div class="card  col-md-3 col-lg-4 mt-2">
     <img src="imagens/banner_jogo.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><strong> Descrição do jogo:</strong></h5>
-      <p class="card-text text-justify">Na fase 01, preste atenção nos resíduos e nas lixeiras em que cada tipo pertence e apanhe-os de acordo com as cores correspondentes.
-Na fase 02, encontre os pares correspondentes pondo em prática o que você aprendeu sobre separação de resíduos e os materiais que foram aproveitados para reuso.</p>
-      <p class="card-text"><strong> Nível de ensino:</strong> Ensino Fundamental I</p>
-      <p class="card-text"><strong> Componente Curricular:</strong> Ciências</p>
-      <p class="card-text"><strong> Temas:</strong> Ciências Naturais: Ambiente</p>
-      <p class="card-text"><strong> Série:</strong> 2° Estágio: 1° Ano, 2° Ano, 3° Ano.</p>
-      <p class="card-text"><strong> Idade:</strong> 05 a 09 anos</p>
+      <p class="card-text text-justify"><?php echo $key['desc_jogo']; ?></p>
+      <p class="card-text"><strong> Nível de ensino:</strong> <?php echo $key['Nensino']; ?></p>
+      <p class="card-text"><strong> Componente Curricular:</strong> <?php echo $key['Ccuricular']; ?></p>
+      <p class="card-text"><strong> Temas:</strong> <?php echo $key['tema']; ?></p>
+      <p class="card-text"><strong> Série:</strong> <?php echo $key['serie']; ?></p>
+      <p class="card-text"><strong> Idade:</strong> <?php echo $key['idade']; ?></p>
       <p class="card-text"><strong> Objetivos:</strong></p>
-      <p class="card-text text-justify">Estimular os alunos a identificar os materiais que podem
-        ser reciclados, a separar os materiais segundo sua origem:(metal, papel, plástico, orgânico e vidro), e a desenvolver conscientização
-         sobre as diferentes formas de coleta e de destino do lixo em seu cotidiano.</p>
+      <p class="card-text text-justify"><?php echo $key['desc_min']; ?></p>
     </div>
   </div>
+  <?php
+  }
+   ?>
   <!--parte 3 direito-->
   <?php if (isset($_SESSION['id_master']) || isset($_SESSION['id_usuario']))
   {
