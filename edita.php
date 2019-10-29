@@ -81,7 +81,7 @@ if ($msg) {
                            <form method="post" action="acao.php" >
                              <div class="form-group">
                                <label for="njogo">Nome do jogo  <span class="text-danger">*</span> </label>
-                               <input type="text" class="form-control" id="njogo" name="njogo" aria-describedby="nensino" maxlength="30" placeholder="Nome da Escola" required>
+                               <input type="text" class="form-control" id="njogo" name="njogo" aria-describedby="nensino" maxlength="30" placeholder="Nome do Jogo" required>
                                <small  class="form-text text-warning">Nome do jogo. </small>
                              </div>
                                <div class="form-group">
@@ -91,7 +91,7 @@ if ($msg) {
                                </div>
                                <div class="form-group">
                                  <label for="niven">Nível de ensino  <span class="text-danger">*</span> </label>
-                                 <input type="text" class="form-control" id="niven" name="niven" aria-describedby="nensino" maxlength="30" placeholder="Nome da Escola" required>
+                                 <input type="text" class="form-control" id="niven" name="niven" aria-describedby="nensino" maxlength="30" placeholder="Nivel do jogo" required>
                                     <small  class="form-text text-warning">Nível de ensino do jogo. </small>
                                </div>
                                <div class="form-group">
@@ -101,17 +101,17 @@ if ($msg) {
                                </div>
                                <div class="form-group">
                                  <label for="tema">Tema <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="20" placeholder="Seu email" required>
+                                 <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="20" placeholder="Tema do jogo" required>
                                  <small  class="form-text text-warning">Tema do Jogo.</small>
                                </div>
                                <div class="form-group">
                                  <label for="serie">Série <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="serie" name="serie" maxlength="20" placeholder="Senha" required>
+                                 <input type="text" class="form-control" id="serie" name="serie" maxlength="20" placeholder="Série" required>
                                    <small  class="form-text text-warning">Série do Ensino.</small>
                                </div>
                                <div class="form-group">
                                  <label for="idade">Idade <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="idade" name="idade" maxlength="3" placeholder="Confirmar Senha" required>
+                                 <input type="text" class="form-control" id="idade" name="idade" maxlength="20" placeholder="Idade" required>
                                   <small  class="form-text text-warning">Idade de classificação.</small>
                                </div>
                                <div class="form-group">
@@ -155,7 +155,7 @@ if ($msg) {
              </li>
 
                   <li class="nav-item ">
-                  <div class="dropdown">
+                  <div class="dropdown d">
                      <a class="nav-link text-light dropdown-toggle active" type="button" data-toggle="dropdown">Cadastrar e Editar
                      <span class="caret"></span></a>
                      <ul class="dropdown-menu">

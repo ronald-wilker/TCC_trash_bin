@@ -90,6 +90,24 @@ class Jogo
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
   }
+  //excluir jogo
+  public function excluirJogo($idjg,$idcat)
+  {
+    if ($idjg && $idcat)
+     {
+      $cmd = $this->pdo->Conn()->prepare("DELETE FROM `games` WHERE categoria_idcategoria = :ide AND idgames = :id");
+      $cmd->bindValue(":ide", $idcat , PDO::PARAM_INT);
+      $cmd->bindValue(":id", $idjg , PDO::PARAM_INT);
+      $cmd->execute();
+
+    }else
+      {
+        $cmd = $this->pdo->Conn()->prepare("DELETE FROM `games` WHERE idgames = :id");
+        $cmd->bindValue(":id", $idjg , PDO::PARAM_INT);
+        $cmd->execute();
+      }
+  }
+
 }
 
 ?>

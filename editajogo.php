@@ -175,7 +175,7 @@ if ($msg) {
         <tr class="table-secondary">
           <td>
             <button type="submit" name="atugame" value="atualiza" class="btn btn-primary mr-2">Editar</button>
-            <a type="button" href="acao.php?id_excg=<?php   echo $key['idgames']?> " name="gamer"  class="btn btn-danger">Excluir</a>
+            <a type="button" href="acao.php?id_excg=<?php   echo $key['idgames']?> & idcat=<?php   echo $key['categoria_idcategoria']?> " name="gamer"  class="btn btn-danger">Excluir</a>
           </td>
           <td>
             <label for="exampleFormControlSelect2">Categoria</label>

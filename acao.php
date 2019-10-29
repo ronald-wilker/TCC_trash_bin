@@ -193,7 +193,19 @@ if (isset($_POST['atugame']))
   header("location:editajogo.php?msg=".$resp);
 
 }
-
+//excluir jogo pelo adm pega valores de variaveis
+if (isset($_GET['id_excg']))
+{
+   $idjg = htmlentities(addslashes($_GET['id_excg']));
+   $idcat = htmlentities(addslashes($_GET['idcat']));
+           try {
+         $jogo->excluirJogo($idjg,$idcat);
+         $resp = base64_encode("Excluido jogo com sucesso!!");
+         header("location:editajogo.php?msg=".$resp);
+       }catch(Exception $ex){
+         echo $ex->getMessage();
+       }
+ }
 
 
  ?>
