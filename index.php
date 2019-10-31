@@ -101,7 +101,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+        <h5 class="modal-title text-dark" id="exampleModalLabel">Cadastro</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -166,7 +166,7 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="login">Login</h5>
+                <h5 class="modal-title text-dark" id="login">Login</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -354,7 +354,7 @@
         <p class="card-text"><?php echo $informacao['diciplina']; ?></p>
         <hr>
         <h4 class="card-title"><strong>Editar perfil</strong></h4>
-        <button class="card-text btn btn-success"><a class="badge badge-success" href="#">Alterar imagem</a></button>
+        <button type="button" class="card-text btn btn-success" data-toggle="modal" data-target="#modalimagem"><a class="badge badge-success" href="#">Alterar imagem</a></button>
         <button class="card-text btn btn-success"><a class="badge badge-success" data-toggle="modal" data-target="#editperfil" href="#">Editar perfil</a></button>
         <ul class="list-group ">
         <li class="list-item">
@@ -364,7 +364,7 @@
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="editperfils">Cadastro</h5>
+                            <h5 class="modal-title text-dark" id="editperfils">Cadastro</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -396,6 +396,42 @@
                     </div>
                     <!--fim do modal cadastro -->
 
+        </li>
+        <li class="list-item">
+
+
+            <!-- Modal upload de imagem perfil-->
+            <div class="modal fade" id="modalimagem" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title text-dark" id="TituloModalCentralizado">Título do modal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body text-dark">
+              <form method="post" enctype="multipart/form-data" action="classes/recebeUpload.php">
+                <div class="form-group">
+                  <label for="userw">Usuario:</label>
+                  <input class="form-control" id="userw" name="idusuario"  placeholder="<?php echo $informacao['nome']; ?>"/>
+                </div>
+                <div class="form-group">
+                  <label for="imagemperfil">Selecione uma imagem:</label>
+                  <input class="form-control" id="imagemperfil" name="arquivo" type="file" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary" name="imusua" value="<?php echo $informacao['idcadastro']; ?> ">Salvar mudanças</button>
+                </div>
+
+              </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+            </div>
+            </div>
+            </div>
         </li>
       </ul>
 
@@ -434,7 +470,9 @@
     <img src="imagens/logotipo.png" class="center" alt="logotipo"  style="max-width:30%;max-height:200px;">
   </div>
   <h1 class="display-4 text-center">Quem Somos</h1>
-  <p class="lead text-center text-justify"> Somos uma equipe de desenvolvedores sempre disposta a ofertar os melhores produtos, visando sua satisfação. Venha conosco em busca de uma nova fase para a sua vida. Sempre estaremos prontos para atendê-lo e satisfazê-lo.</p>
+  <p class="lead text-center text-justify"> Somos uma equipe de desenvolvedores sempre disposta a
+     ofertar os melhores produtos, visando sua satisfação. Venha conosco em busca de uma nova fase para a sua vida.
+     Sempre estaremos prontos para atendê-lo e satisfazê-lo.</p>
       <!--comentario-->
       <?php
       if (isset($_SESSION['id_usuario']) || isset($_SESSION['id_master']))

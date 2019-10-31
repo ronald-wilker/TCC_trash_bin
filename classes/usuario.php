@@ -88,10 +88,6 @@ class Usuario
     return $dados;
   }
 
-
-
-
-
   //excluir Usuario
   public function excluirUse($iduse)
   {
@@ -110,6 +106,45 @@ class Usuario
         $cmd->execute();
       }
   }
+  //Cadastrar imagem perfil
+  public function cadastrarImgPerfil($novoNome,$novo)
+  {
+    //verificação se o email ja existe
+    $cmd = $this->pdo->Conn()->prepare("SELECT idimgUser, cadastro_idcadastro from imgUser WHERE cadastro_idcadastro = :id");
+    $cmd->bindValue(":id", $novo , PDO::PARAM_STR);
+    $cmd->execute();
+    if ($cmd->rowCount() > 0)//veio ide
+     {
+       $cmd = $this->pdo->Conn()->prepare("UPDATE `imgUser` SET `cadastro_idcadastro`= :idf WHERE  cadastro_idcadastro = :id");
+       $cmd->bindValue(":idf", $novo , PDO::PARAM_INT);
+       $cmd->bindValue(":id", $novo , PDO::PARAM_INT);
+       $cmd->execute();
+
+       // cadastrar
+       // $id = null;
+       // $campo = "`idimgUser`, `nome`, `imagem`, `cadastro_idcadastro`";
+       // $cmd = $this->pdo->Conn()->prepare("INSERT INTO  `imgUser` ($campo) values (:id, :nome, :imag, :fk_id)");
+       // $cmd->bindValue(":id",$id , PDO::PARAM_INT);
+       // $cmd->bindValue(":nome",$novo , PDO::PARAM_STR);
+       // $cmd->bindValue(":imag",$novoNome , PDO::PARAM_STR);
+       // $cmd->bindValue(":fk_id",$novo , PDO::PARAM_STR);
+       // $cmd->execute();
+        return true;
+    }else {
+      // cadastrar
+      $id = null;
+      $campo = "`idimgUser`, `nome`, `imagem`, `cadastro_idcadastro`";
+      $cmd = $this->pdo->Conn()->prepare("INSERT INTO  `imgUser` ($campo) values (:id, :nome, :imag, :fk_id)");
+      $cmd->bindValue(":id",$id , PDO::PARAM_INT);
+      $cmd->bindValue(":nome",$novo , PDO::PARAM_STR);
+      $cmd->bindValue(":imag",$novoNome , PDO::PARAM_STR);
+      $cmd->bindValue(":fk_id",$novo , PDO::PARAM_STR);
+      $cmd->execute();
+      return true;
+    }
+
+  }
+
 }
 
 

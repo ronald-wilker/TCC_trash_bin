@@ -38,7 +38,10 @@ class Jogo
   public function atualizarJogo($atugame)
   {
   if (empty($nomep) || empty($sele)) {
+    echo "<pre>";
     print_r($atugame);
+    echo "</pre>";
+
     $cmd = $this->pdo->Conn()->prepare("UPDATE `games` SET  nomejogo = :njogo, Nensino = :niven,
       Ccuricular = :ccurr,  tema = :tema,  serie = :serie,
         idade = :idade,  categoria_idcategoria = :fk_id,  nivel = :sele WHERE  idgames = :id ");

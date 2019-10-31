@@ -96,17 +96,17 @@ if ($msg) {
                                </div>
                                <div class="form-group">
                                  <label for="ccurr">Componente Curricular  <span class="text-danger">*</span> </label>
-                                 <input type="text" class="form-control" id="ccurr" name="ccurr" aria-describedby="diciplina" maxlength="30" placeholder="Nome da Disciplina" required>
+                                 <input type="text" class="form-control" id="ccurr" name="ccurr" aria-describedby="diciplina" maxlength="25" placeholder="Nome da Disciplina" required>
                                   <small  class="form-text text-warning">Componente Curricular(disciplina).</small>
                                </div>
                                <div class="form-group">
                                  <label for="tema">Tema <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="20" placeholder="Tema do jogo" required>
+                                 <input type="text" class="form-control" id="tema" name="tema" aria-describedby="emailHelp" maxlength="45" placeholder="Tema do jogo" required>
                                  <small  class="form-text text-warning">Tema do Jogo.</small>
                                </div>
                                <div class="form-group">
                                  <label for="serie">Série <span class="text-danger">*</span></label>
-                                 <input type="text" class="form-control" id="serie" name="serie" maxlength="20" placeholder="Série" required>
+                                 <input type="text" class="form-control" id="serie" name="serie" maxlength="45" placeholder="Série" required>
                                    <small  class="form-text text-warning">Série do Ensino.</small>
                                </div>
                                <div class="form-group">
