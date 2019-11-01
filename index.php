@@ -41,7 +41,8 @@
 <meta name="author" content="Lidiane da S. Costa e Ronald Wilker de A. Andrade">
 <meta name="description" content="steam jogos digitais">
 <meta name="keywords" content="steam, jogos, Trash Bin">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.css"> -->
 <link href="fontawesome-free-5.8.2-web/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="CSS/estilo.css">
   <title>Steam RLink</title>
@@ -341,7 +342,18 @@
     <div class="card  col-md-3 col-lg-4 mt-2 bg-primary">
       <h1 class="card-title text-center text-light">Meu Perfil</h1>
       <div class="d-flex justify-content-center ">
-        <img src="imagens/perfil2.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+        <?php if ($informacao['imgusuario']) {
+          ?>
+          <img src="perfil/<?php echo $informacao['imgusuario']; ?>" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+          <?php
+        } else {
+          ?>
+
+          <img src="imagens/perfil2.png" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+          <?php
+        }
+
+        ?>
       </div>
       <div class="card-body text-center text-light">
         <h4 class="card-title"><strong>Sobre mim</strong></h4>

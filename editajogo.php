@@ -40,7 +40,7 @@ if ($msg) {
 <link rel="stylesheet" href="CSS/estilo.css">
   <title>Steam RLink</title>
 </head>
-  <body style="background-image: url('s.jpg');background-repeat:no-repeat; background-size:cover;>
+  <body>
     <main>
       <div class="" id="myAlert">
 
@@ -69,7 +69,7 @@ if ($msg) {
                           <li class="nav-item">
 
        <!--botao volta pagina anterior -->
-         <?php echo "<a class='nav-link text-light ' href='" . $_SERVER['HTTP_REFERER'] . "'>Voltar</a>"; ?>
+         <a class='nav-link text-light ' href="edita.php">Voltar</a>
 
              </li>
                 <li class="nav-item ">

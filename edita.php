@@ -38,7 +38,7 @@ if ($msg) {
 <link rel="stylesheet" href="CSS/estilo.css">
   <title>Steam RLink</title>
 </head>
-  <body style="background-image: url('s.jpg');background-repeat:no-repeat; background-size:cover;>
+  <body>
     <main>
       <div class="" id="myAlert">
 
@@ -155,24 +155,23 @@ if ($msg) {
              </li>
 
                   <li class="nav-item ">
-                  <div class="dropdown d">
-                     <a class="nav-link text-light dropdown-toggle active" type="button" data-toggle="dropdown">Cadastrar e Editar
-                     <span class="caret"></span></a>
-                     <ul class="dropdown-menu">
-                       <li><a class="nav-link " data-toggle="modal" data-target="#modajogo" href="#">Cadastrar jogo</a></li>
-                       <li><a class="nav-link " href="editajogo.php" >Editar C. Jogo</a></li>
-                       <li><a class="nav-link " href="classes/sair.php" >Sair</a></li>
-
-                     </ul>
-                   </div>
+                      <div class="dropdown d">
+                         <a class="nav-link text-light dropdown-toggle active"  data-toggle="dropdown">Cadastrar e Editar
+                         <span class="caret"></span></a>
+                         <ul class="dropdown-menu text-center">
+                           <li><a class="nav-link badge badge-light " data-toggle="modal" data-target="#modajogo" href="#">Cadastrar jogo</a></li>
+                           <li><a class="nav-link badge badge-light " href="editajogo.php" >Editar Informação</a></li>
+                           <li><a class="nav-link badge badge-light " href="classes/sair.php" >Sair</a></li>
+                         </ul>
+                       </div>
                    </li>
            </ul>
 
 
-          <form class="form-inline my-2 my-lg-0">
+          <!-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Busca">
             <button class="btn btn-warning text-purple my-2 my-sm-0" type="submit">Pesquisa</button>
-          </form>
+          </form> -->
         </div>
       </nav>
       <!--fim topo-->

@@ -14,19 +14,19 @@ class Conect
   public function __construct(){
     $this->host = "localhost";
     $this->dbname = "trash";
-    $this->usuario = "will";
-    $this->senha = "will";
+    $this->usuario = "root";
+    $this->senha = "";
   }
 
   //METODO PARA CONECTAR
   public function Conn()
   {
 
-    //define('CHARSET', 'utf8');
+    // define('CHARSET', 'utf8');
     try {
       if(is_null(self::$pdo)){
-        $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
-        self::$pdo = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->usuario, $this->senha,$opcoes);
+       // $opcoes = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8');
+        self::$pdo = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname, $this->usuario, $this->senha,array(1002 => "SET NAMES utf8"));
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       }
       return self::$pdo;

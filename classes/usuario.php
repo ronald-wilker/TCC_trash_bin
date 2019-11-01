@@ -64,7 +64,8 @@ class Usuario
 
   public function buscarDadosUsuarios($id)
   {
-    $cmd = $this->pdo->Conn()->prepare("SELECT * from cadastro WHERE idcadastro = :id ");
+    $cmd = $this->pdo->Conn()->prepare("SELECT *,(SELECT `imagem` FROM `imguser` WHERE `cadastro_idcadastro` = :ide) as imgusuario from cadastro WHERE idcadastro = :id ");
+    $cmd->bindValue(":ide",$id , PDO::PARAM_STR);
     $cmd->bindValue(":id",$id , PDO::PARAM_STR);
     $cmd->execute();
     $dados = $cmd->fetch();
@@ -109,16 +110,19 @@ class Usuario
   //Cadastrar imagem perfil
   public function cadastrarImgPerfil($novoNome,$novo)
   {
+    echo $novoNome;
     //verificação se o email ja existe
     $cmd = $this->pdo->Conn()->prepare("SELECT idimgUser, cadastro_idcadastro from imgUser WHERE cadastro_idcadastro = :id");
     $cmd->bindValue(":id", $novo , PDO::PARAM_STR);
     $cmd->execute();
     if ($cmd->rowCount() > 0)//veio ide
      {
-       $cmd = $this->pdo->Conn()->prepare("UPDATE `imgUser` SET `cadastro_idcadastro`= :idf WHERE  cadastro_idcadastro = :id");
-       $cmd->bindValue(":idf", $novo , PDO::PARAM_INT);
+       $cmd = $this->pdo->Conn()->prepare("UPDATE `imguser` SET `imagem`=:imge WHERE  cadastro_idcadastro = :id");
+       $cmd->bindValue(":imge", $novoNome , PDO::PARAM_STR);
        $cmd->bindValue(":id", $novo , PDO::PARAM_INT);
        $cmd->execute();
+
+       return true;
 
        // cadastrar
        // $id = null;
@@ -129,7 +133,6 @@ class Usuario
        // $cmd->bindValue(":imag",$novoNome , PDO::PARAM_STR);
        // $cmd->bindValue(":fk_id",$novo , PDO::PARAM_STR);
        // $cmd->execute();
-        return true;
     }else {
       // cadastrar
       $id = null;
