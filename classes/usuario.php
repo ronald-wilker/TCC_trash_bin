@@ -64,7 +64,7 @@ class Usuario
 
   public function buscarDadosUsuarios($id)
   {
-    $cmd = $this->pdo->Conn()->prepare("SELECT *,(SELECT `imagem` FROM `imguser` WHERE `cadastro_idcadastro` = :ide) as imgusuario from cadastro WHERE idcadastro = :id ");
+    $cmd = $this->pdo->Conn()->prepare("SELECT *,(SELECT `imagem` FROM `imguser` WHERE `cadastro_idcadastro` = :ide) as imguser from cadastro WHERE idcadastro = :id ");
     $cmd->bindValue(":ide",$id , PDO::PARAM_STR);
     $cmd->bindValue(":id",$id , PDO::PARAM_STR);
     $cmd->execute();

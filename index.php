@@ -342,9 +342,9 @@
     <div class="card  col-md-3 col-lg-4 mt-2 bg-primary">
       <h1 class="card-title text-center text-light">Meu Perfil</h1>
       <div class="d-flex justify-content-center ">
-        <?php if ($informacao['imgusuario']) {
+        <?php if ($informacao['imguser']) {
           ?>
-          <img src="perfil/<?php echo $informacao['imgusuario']; ?>" class="card-img-top card-img-cent imm rounded-circle" alt="...">
+          <img src="perfil/<?php echo $informacao['imguser'];?>" class="card-img-top card-img-cent imm rounded-circle" alt="imagem de perfil">
           <?php
         } else {
           ?>
