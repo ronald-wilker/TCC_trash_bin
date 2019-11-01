@@ -243,7 +243,8 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ciencia">
-          <a class="dropdown-item" href="#">Trash Bin</a>
+          <button type="button" class="troca" data-element="#divJogo">Mostrar / Esconder</button>
+          <!-- <button class="dropdown-item " onclick="Mudar('divJogo')"  href="#">Trash Bin</button> -->
           <a class="dropdown-item" href="#">Novo jogo</a>
           <a class="dropdown-item" href="#">Novo jogo</a>
         </div>
@@ -313,12 +314,12 @@
     </ul>
   </div>
   <!--parte 2 do meio-->
-  <?php
-     foreach ($game as $key ) {
 
-     ?>
+  <div class="card  col-md-3 col-lg-4 mt-2" id="divJogo"  >
+    <?php
+    foreach ($game as $key ) {
 
-  <div class="card  col-md-3 col-lg-4 mt-2">
+      ?>
     <img src="imagens/banner_jogo.png" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="card-title"><strong> Descrição do jogo:</strong></h5>
@@ -331,10 +332,10 @@
       <p class="card-text"><strong> Objetivos:</strong></p>
       <p class="card-text text-justify"><?php echo $key['desc_min']; ?></p>
     </div>
-  </div>
-  <?php
+    <?php
   }
-   ?>
+  ?>
+  </div>
   <!--parte 3 direito-->
   <?php if (isset($_SESSION['id_master']) || isset($_SESSION['id_usuario']))
   {

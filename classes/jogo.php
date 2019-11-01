@@ -80,7 +80,7 @@ class Jogo
 
   // public function buscarDadosUsuarios($id)
   // {
-  //   $cmd = $this->pdo->Conn()->prepare("SELECT * from cadastro WHERE idcadastro = :id ");
+  //   $cmd = $this->pdo->Conn()->prepare("SELECT * from games WHERE idgames = :id ");
   //   $cmd->bindValue(":id",$id , PDO::PARAM_STR);
   //   $cmd->execute();
   //   $dados = $cmd->fetch();
