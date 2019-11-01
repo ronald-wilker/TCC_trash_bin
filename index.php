@@ -45,6 +45,15 @@
 <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.css"> -->
 <link href="fontawesome-free-5.8.2-web/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="CSS/estilo.css">
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$(".botao").click(function(){
+    $(".diver").toggle("slow");
+});
+});
+
+</script>
   <title>Steam RLink</title>
 </head>
 <body>
@@ -243,10 +252,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ciencia">
-          <button type="button" class="troca" data-element="#divJogo">Mostrar / Esconder</button>
-          <!-- <button class="dropdown-item " onclick="Mudar('divJogo')"  href="#">Trash Bin</button> -->
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Trash Bin</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -255,9 +263,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ed_fisica">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -266,9 +274,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="geografia">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -277,9 +285,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="historia">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -288,9 +296,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ingles">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
       <div class="dropdown show mt-1">
@@ -299,9 +307,9 @@
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ling_port">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
       </div>
     </div>
@@ -315,7 +323,8 @@
   </div>
   <!--parte 2 do meio-->
 
-  <div class="card  col-md-3 col-lg-4 mt-2" id="divJogo"  >
+  <div class="card  col-md-3 col-lg-4 mt-2 diver"  style="display:none;" >
+
     <?php
     foreach ($game as $key ) {
 
@@ -336,6 +345,7 @@
   }
   ?>
   </div>
+
   <!--parte 3 direito-->
   <?php if (isset($_SESSION['id_master']) || isset($_SESSION['id_usuario']))
   {
