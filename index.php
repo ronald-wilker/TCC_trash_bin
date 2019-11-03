@@ -420,7 +420,7 @@
               <form method="post" enctype="multipart/form-data" action="classes/recebeUpload.php">
                 <div class="form-group">
                   <label for="userw">Usuario:</label>
-                  <input class="form-control" id="userw" name="idusuario"  placeholder="<?php echo $informacao['nome']; ?>"/>
+                  <input class="form-control" id="userw" name="nome"  placeholder="<?php echo $informacao['nome']; ?>"/>
                 </div>
                 <div class="form-group">
                   <label for="imagemperfil">Selecione uma imagem:</label>
@@ -519,11 +519,11 @@
         <form class="form-group">
         <div class="row hrd">
           <div class="col-4 col-md-2 mt-2">
-            <img src="imagens/perfil2.png" alt="perfil" class="perfil">
+            <img src="perfil/<?php echo $v['imagem'];?>" alt="perfil" class="perfil">
           </div>
           <div class="col-12 col-md-4 ">
         <p>
-         <span class="font-weight-bold mr-1"> <?php echo $v['idusuario']; ?> </span>
+         <span class="font-weight-bold mr-1"> <?php echo $v['nomecad']; ?> </span>
           <span class="mr-1">
             <?php $data = new DateTime($v['datacomentario']);
                 echo  $data->format('d/m/Y');

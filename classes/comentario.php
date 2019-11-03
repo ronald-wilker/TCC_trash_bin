@@ -11,16 +11,17 @@ class Comentario
     $this->pdo = new Conect();
 
   }
-  //Cadastrar
   public function buscarcomentario()
   {
     //selecionar comentario
-    $cmd = $this->pdo->Conn()->prepare("SELECT * , (SELECT `nome` FROM `cadastro` WHERE `idcadastro` = `cadastro_idcadastro`) as idusuario FROM `comentario` ORDER BY hora DESC");
+    $cmd = $this->pdo->Conn()->prepare("SELECT * FROM comentario  JOIN cadastro
+      ON cadastro_idcadastrocm = idcadastro  JOIN imguser ON cadastro_idcadastroim = idcadastro ORDER BY `comentario`.`hora` ASC");
     $cmd->execute();
     $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
     return $dados;
   }
 
+  //Cadastrar
   //inserir comentario
   public function inserircomentario(  $comentario ,$idcadastro)
   {
