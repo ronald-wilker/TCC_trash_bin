@@ -13,7 +13,7 @@ include_once 'classes/jogo.php';
 
 $us = new Usuario;
 $comt = new Comentario;
-$jogo = new Jogo;
+$jogo = new Jogo();
 
 
 $comt->buscarcomentario();
@@ -206,6 +206,18 @@ if (isset($_GET['id_excg']))
          echo $ex->getMessage();
        }
  }
+
+ //recebemos nosso par�metro vindo do form
+ //receber valo para pesquisa especifica por jogo
+ // $pesquisa = htmlentities(addslashes($_POST['palavra']));
+ if (isset($_POST['pesquisaDesc']) ? $_POST['pesquisaDesc'] : null) {
+   $parametro = isset($_POST['pesquisaDesc']) ? $_POST['pesquisaDesc'] : null;
+echo $jogo->espesqJogo($parametro);
+ }
+
+
+
+
 
 
  ?>

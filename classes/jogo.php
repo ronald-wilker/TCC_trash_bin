@@ -38,9 +38,9 @@ class Jogo
   public function atualizarJogo($atugame)
   {
   if (empty($nomep) || empty($sele)) {
-    echo "<pre>";
-    print_r($atugame);
-    echo "</pre>";
+    // echo "<pre>";
+    // print_r($atugame);
+    // echo "</pre>";
 
     $cmd = $this->pdo->Conn()->prepare("UPDATE `games` SET  nomejogo = :njogo, Nensino = :niven,
       Ccuricular = :ccurr,  tema = :tema,  serie = :serie,
@@ -86,6 +86,15 @@ class Jogo
   //   $dados = $cmd->fetch();
   //   return $dados;
   // }
+  //busca tudo de categoria jg quanto da tabela game função pra substituir o full auter join
+  public function buscarJogocate()
+  {
+    $cmd = $this->pdo->Conn()->prepare("SELECT * FROM categoria LEFT JOIN games ON idcategoria = categoria_idcategoria
+UNION SELECT * FROM categoria RIGHT JOIN games ON idcategoria = categoria_idcategoria");
+    $cmd->execute();
+    $dados = $cmd->fetchAll(PDO::FETCH_ASSOC);
+    return $dados;
+  }
   public function buscarJogo()
   {
     $cmd = $this->pdo->Conn()->prepare("SELECT * from games");
@@ -110,7 +119,43 @@ class Jogo
         $cmd->execute();
       }
   }
+//pesquisa especifica por jogo
+  public function espesqJogo($pesquisa){
+    $cmd = $this->pdo->Conn()->prepare("SELECT * from `games` WHERE `nomejogo` LIKE '%$pesquisa%' ");
+    $cmd->execute();
+    $rs = $cmd->fetchAll(PDO::FETCH_ASSOC);
+    $msg = "";
+      if ($rs) {
+
+      foreach ($rs as $key ) {
+        $msg.="<img src='imagens/banner_jogo.png' class='card-img-top' alt='...'>";
+        $msg.="<div class='card-body'>";
+        $msg.="<h5 class='card-title'><strong> Descrição do jogo:</strong></h5>";
+        $msg.="<p class='card-text text-justify'>".$key['desc_jogo']."</p>";
+        $msg.="<p class='card-text'><strong> Nível de ensino:</strong>".$key['Nensino']."</p>";
+        $msg.="<p class='card-text'><strong> Componente Curricular:</strong>".$key['Ccuricular']."</p>";
+        $msg.="<p class='card-text'><strong> Temas:</strong>".$key['tema']."</p>";
+        $msg.="<p class='card-text'><strong> Série:</strong>".$key['serie']."</p>";
+        $msg.="<p class='card-text'><strong> Idade:</strong>".$key['idade']."</p>";
+        $msg.="<p class='card-text'><strong> Objetivos:</strong> </p>";
+        $msg.="<p class='card-text text-justify'>".$key['desc_min']."</p>";
+       $msg.="</div>";
+
+    }
+  }else {
+              $msg = "";
+							$msg.="Nenhum resultado foi encontrado...";
+  }
+
+  //retorna a msg concatenada
+  	echo $msg;
+
+
+  }
 
 }
+
+
+
 
 ?>

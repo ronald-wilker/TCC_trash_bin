@@ -5,7 +5,7 @@
   $us = new Usuario;
   $comtario = new Comentario;
   $jogo = new Jogo;
-  $game  = $jogo->buscarJogo();
+  $game  = $jogo->buscarJogocate();
   $coment  = $comtario->buscarcomentario();
   session_start();
   if (isset($_SESSION['id_usuario']))
@@ -45,15 +45,9 @@
 <!-- <link rel="stylesheet" href="bootstrap/css/bootstrap.css"> -->
 <link href="fontawesome-free-5.8.2-web/css/all.css" rel="stylesheet">
 <link rel="stylesheet" href="CSS/estilo.css">
- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-$(".botao").click(function(){
-    $(".diver").toggle("slow");
-});
-});
-
-</script>
+<script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<!-- <script src="jquery/jquery.mobile.custom.js"></script> -->
+<script type="text/javascript" src="js/eventjquery.js"></script>
   <title>Steam RLink</title>
 </head>
 <body>
@@ -216,20 +210,27 @@ $(".botao").click(function(){
     }
      ?>
 
-
+     <li class="nav-item">
+         <form class="form nav-link " name="form_pesquisa" id="form_pesquisa" method="post" action="">
+           <div class="input-group input-group-sm">
+             <span class=" text-white mr-2">pesquisa:</span>
+               <input class="form-control  " name="pesquisaDesc" id="pesquisaDesc" value="" tabindex="1" type="text" placeholder="Pesquisa descrição...">
+               <!-- <div class="input-group-addon" style="margin-left: -37px; z-index: 3; border-radius: 20px; background-color: transparent; border:none;">
+               </div> -->
+           </div>
+         </form>
+       </li>
+      <li class="nav-item mt-2">
+       <button class="botao btn btn-outline-primary" ><i class="fas fa-search"></i></button>
+     </li>
     </ul>
-
-
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Busca">
-      <button class="btn btn-warning text-purple my-2 my-sm-0" type="submit">Pesquisa</button>
-    </form>
   </div>
 </nav>
 <!--fim topo-->
 
 <!--inicioi meio-->
 <div class="card-group d-flex justify-content-center">
+
   <!--parte 1 esquerdo-->
   <div class="card  col-md-3 col-lg-4 mt-2  bg-primary text-light">
     <h1 class="card-title text-center">Selecionar Jogos</h1>
@@ -241,14 +242,14 @@ $(".botao").click(function(){
         </a>
 
         <div class="dropdown-menu" aria-labelledby="arte">
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
-          <a class="dropdown-item" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
+          <a class="dropdown-item botao" href="#">Novo jogo</a>
         </div>
      </div>
       <div class="dropdown show mt-1">
         <a class=" text-light dropdown-toggle" href="#" role="button" id="ciencia" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Ciências
+          Ciência
         </a>
 
         <div class="dropdown-menu" aria-labelledby="ciencia">
@@ -323,27 +324,9 @@ $(".botao").click(function(){
   </div>
   <!--parte 2 do meio-->
 
-  <div class="card  col-md-3 col-lg-4 mt-2 diver"  style="display:none;" >
+  <div class="card  col-md-3 col-lg-4 mt-2 diver"  id="MostraPesq"  style="display:none;" >
+    <div class="card-header" id="loading"></div>
 
-    <?php
-    foreach ($game as $key ) {
-
-      ?>
-    <img src="imagens/banner_jogo.png" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><strong> Descrição do jogo:</strong></h5>
-      <p class="card-text text-justify"><?php echo $key['desc_jogo']; ?></p>
-      <p class="card-text"><strong> Nível de ensino:</strong> <?php echo $key['Nensino']; ?></p>
-      <p class="card-text"><strong> Componente Curricular:</strong> <?php echo $key['Ccuricular']; ?></p>
-      <p class="card-text"><strong> Temas:</strong> <?php echo $key['tema']; ?></p>
-      <p class="card-text"><strong> Série:</strong> <?php echo $key['serie']; ?></p>
-      <p class="card-text"><strong> Idade:</strong> <?php echo $key['idade']; ?></p>
-      <p class="card-text"><strong> Objetivos:</strong></p>
-      <p class="card-text text-justify"><?php echo $key['desc_min']; ?></p>
-    </div>
-    <?php
-  }
-  ?>
   </div>
 
   <!--parte 3 direito-->
@@ -493,6 +476,7 @@ $(".botao").click(function(){
     <img src="imagens/logotipo.png" class="center" alt="logotipo"  style="max-width:30%;max-height:200px;">
   </div>
   <h1 class="display-4 text-center">Quem Somos</h1>
+
   <p class="lead text-center text-justify"> Somos uma equipe de desenvolvedores sempre disposta a
      ofertar os melhores produtos, visando sua satisfação. Venha conosco em busca de uma nova fase para a sua vida.
      Sempre estaremos prontos para atendê-lo e satisfazê-lo.</p>
@@ -633,10 +617,10 @@ $(".botao").click(function(){
 
 
    </main>
-   <script src="js/funcion.js"></script>
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <script src="js/funcion.js"></script>
 
 </body>
 </html>
